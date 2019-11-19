@@ -8,11 +8,26 @@ shinyServer(function(input, output){
     
     input$action_total
     
+    # get Exam 1 Score
+    values$exam_1_score = isolate({
+      min(input$exam_1_score, 170)
+    })
+    
+    # get Exam 2 Score
+    values$exam_2_score = isolate({
+      min(input$exam_2_score, 170)
+    })
+    
+    # get Exam 2 Score
+    values$sim_final_score = isolate({
+      min(input$final_exam_score, 170)
+    })
+    
     # take only the top 2 exam scores
     values$exam_scores = isolate({
-      sum(sort(c(min(input$exam_1_score, 170),
-                 min(input$exam_2_score, 170),
-                 min(input$final_exam_score, 170)))[2:3])
+      sum(sort(c(values$exam_1_score,
+                 values$exam_2_score,
+                 values$sim_final_score))[2:3])
     })
     
     # calculate and transform the lab score
@@ -61,8 +76,8 @@ shinyServer(function(input, output){
     
     # calculate the scores for Exams 1 and 2 and everything else
     values$up_to_final<-isolate({
-      sum(c(min(input$exam_1_score, 170),
-            min(input$exam_2_score, 170),
+      sum(c(values$exam_1_score,
+            values$exam_2_score,
             values$lab_score,
             values$required_elcs,
             values$extra_credit_kc,
@@ -123,8 +138,9 @@ shinyServer(function(input, output){
     else if (values$up_to_final > 292)
       paste("Simulated grade already at or above a C")
     else
-      paste(292 - values$up_to_final)
+      paste(292 - values$up_to_final + min(values$exam_1_score,
+                                           values$exam_2_score))
   })
-    
+  
 })
-  # })
+# })
