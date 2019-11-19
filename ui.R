@@ -3,27 +3,44 @@ library(shinythemes)
 
 # create the user interface
 shinyUI(fluidPage(
-  theme = shinytheme("spacelab"),
+  theme = shinytheme("cerulean"),
   
   # create title
-  titlePanel("PSYC 1100 Grade Simulator"),
+  titlePanel("PSYC 1100 Grade Simulator (Fall 2019)"),
   
   # create sidebar
   sidebarLayout(
     sidebarPanel(
       p(h5(strong("Instructions"))),
       tags$ul(
-        tags$li("For each item, please enter the", strong("actual grade"),"that you 
-        earned (visible on HuskyCT). After you have entered all grades,
-        press 'Total' to calculate your total grade so far."),
-        tags$li("Each text box",strong("must"), "have a number in it, even if that 
-        number is zero."),
-        tags$li("Be sure to", strong("check and double-check"), "the values that you 
-        entered to avoid making any mistakes when using this grade simulator."),
-        tags$li("To estimate your final grade with the Optional Final Exam, simply 
-        type in a grade (between 0-150) and hit 'Total' again."),
-        tags$li("To estimate what your grade will be without taking the Optional Final
-        Exam, enter '0' for the Optional Final Exam box.")),
+        tags$li("This grade simulator is provided to help you simulate what your
+                grade may be in the class. Please note that this is provided for your
+                informational purposes only. Using this improperly may result in
+                inaccurate simulations."),
+        tags$li(strong("Please read and follow all instructions carefully.")),
+        tags$ul(
+          tags$li("For exam scores, please enter the actual curved grade that you earned 
+                  (out of 150 points). Failing to enter the curved grade out of 150
+                  points will dramatically change your grade simulations."),
+          tags$li("For the lab grade, please enter the percentage that you earned
+                    in class (out of 100)."),
+          tags$li("For the ELCs, please enter the number of credits that you earned 
+                    in the Participant Pool and from the writing alternatives
+                    separately."),
+          tags$li("For each Knowledge Check, please enter the actual score that
+                    you earned (out of 10 or 20, depending on the Knowledge Check)."),
+          tags$li("Each text box",strong("must"), "have a number in it, even if that 
+                  number is zero."),
+          tags$li("After you have entered all grades, press 'Simulate!' to simulate your 
+                  total grade so far.")
+        ),
+        tags$li("Be sure to", strong("check, double-check, and", em("triple-check")), 
+                "the values that you entered to avoid making any mistakes when using 
+                this grade simulator."),
+        tags$li("To simulate your final course grade with the Optional Final Exam, simply 
+                  type in a grade (between 0-150) and hit 'Simulate!' again."),
+        tags$li("To simulate your final course grade without taking the Optional Final
+                  Exam, enter '0' for the Optional Final Exam box.")),
       hr(),
       
       # specify the grade
@@ -56,7 +73,7 @@ shinyUI(fluidPage(
       hr(),
       
       # create total button
-      actionButton("action_total", label = "Total")        
+      actionButton("action_total", label = "Simulate!")        
     ),
     
     # create main panel
