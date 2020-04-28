@@ -19,9 +19,9 @@ shinyUI(fluidPage(
                 inaccurate simulations."),
         tags$li(strong("Please read and follow all instructions carefully.")),
         tags$ul(
-          tags$li("For exam scores, please enter the actual curved grade that you earned 
-                  (out of 100 points). Failing to enter the curved grade out of 100
-                  points will dramatically change your grade simulations."),
+          tags$li("For exam scores, please enter the curved grade that you earned. 
+                  Failing to enter the curved grade will dramatically change your 
+                  grade simulations."),
           tags$li("For the lab grade, please enter the percentage that you earned
                     in class (out of 100)."),
           tags$li("For the ELCs, please enter the number of credits that you earned 
