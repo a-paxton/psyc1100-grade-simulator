@@ -206,20 +206,22 @@ shinyServer(function(input, output){
   output$text_passing_grade<-renderText({
     if(input$action_total==0) ""
     else if (values$up_to_final >= 220)
-      paste("Simulated grade already at or above a D-")
+      paste("Simulated grade already at or above a D- (without taking the Optional Final)")
     else
-      paste(220 - values$up_to_final + min(values$exam_1_score,
-                                           values$exam_2_score))
+      paste(220 - (values$up_to_final + min(values$exam_1_score,
+                                            values$exam_2_score,
+                                            values$exam_3_score)))
   })
   
   # create text with grade needed to make a C
   output$text_cgrade<-renderText({
     if(input$action_total==0) ""
     else if (values$up_to_final >= 292)
-      paste("Simulated grade already at or above a C")
+      paste("Simulated grade already at or above a C (without taking the Optional Final)")
     else
-      paste(292 - values$up_to_final + min(values$exam_1_score,
-                                           values$exam_2_score))
+      paste(292 - (values$up_to_final + min(values$exam_1_score,
+                                            values$exam_2_score,
+                                            values$exam_3_score)))
   })
   
 })
