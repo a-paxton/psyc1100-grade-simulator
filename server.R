@@ -12,24 +12,53 @@ shinyServer(function(input, output){
     
     # get Exam 1 Score
     values$exam_1_score = isolate({
-      min(input$exam_1_score, 170)
+      min(input$exam_1_score, 115)
     })
     
     # get Exam 2 Score
     values$exam_2_score = isolate({
-      min(input$exam_2_score, 170)
+      min(input$exam_2_score, 115)
     })
     
-    # get Exam 2 Score
+    # get Exam 3 Score
+    values$exam_3_score = isolate({
+      min(input$exam_3_score, 115)
+    })
+    
+    # get Optional Final Score
     values$sim_final_score = isolate({
-      min(input$final_exam_score, 170)
+      min(input$final_exam_score, 115)
     })
     
-    # take only the top 2 exam scores
+    # take only the top 3 exam scores
     values$exam_scores = isolate({
       sum(sort(c(values$exam_1_score,
                  values$exam_2_score,
-                 values$sim_final_score))[2:3])
+                 values$exam_3_score,
+                 values$sim_final_score))[2:4])
+    })
+    
+    #### Quizzes ####
+    
+    # get the total quiz points earned
+    values$quiz_total = isolate({
+      sum(c((input$quiz_warm_up * 15),
+            input$quiz_syllabus,
+            (input$quiz_post_exam1 * 15),
+            (input$quiz_post_exam2 * 15)))
+    })
+    
+    # figure out which to drop
+    values$quiz_drop = isolate({
+      min((input$quiz_warm_up * 15), 
+          input$quiz_syllabus, 
+          (input$quiz_post_exam1 * 15), 
+          (input$quiz_post_exam2 * 15))
+    })
+    
+    # drop lowest
+    values$quiz_score = isolate({
+      ((values$quiz_total - values$quiz_drop) / 45) * 10
     })
     
     #### Lab ####
@@ -80,14 +109,21 @@ shinyServer(function(input, output){
     #### Totalling ####
     
     # calculate their total score for the class so far
-    values$total_score<-isolate({
-      values$exam_scores + values$lab_score + values$required_elcs + values$extra_credit_kc + values$extra_credit_elcs
+    values$total_score <- isolate({
+      sum(c(values$exam_scores,
+            values$quiz_score,
+            values$lab_score,
+            values$required_elcs,
+            values$extra_credit_kc,
+            values$extra_credit_elcs))
     })
     
-    # calculate the scores for Exams 1 and 2 and everything else
-    values$up_to_final<-isolate({
+    # calculate the scores before Optional Final
+    values$up_to_final <- isolate({
       sum(c(values$exam_1_score,
             values$exam_2_score,
+            values$exam_3_score,
+            values$quiz_score,
             values$lab_score,
             values$required_elcs,
             values$extra_credit_kc,
