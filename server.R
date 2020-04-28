@@ -8,6 +8,8 @@ shinyServer(function(input, output){
     
     input$action_total
     
+    #### Exams ####
+    
     # get Exam 1 Score
     values$exam_1_score = isolate({
       min(input$exam_1_score, 170)
@@ -30,10 +32,14 @@ shinyServer(function(input, output){
                  values$sim_final_score))[2:3])
     })
     
+    #### Lab ####
+    
     # calculate and transform the lab score
     values$lab_score = isolate({
       min(input$lab_score, 110) * .8
     })
+    
+    #### Knowledge Checks ####
     
     # grab how many KC points they earned (total)
     values$raw_kc = isolate({
@@ -46,6 +52,8 @@ shinyServer(function(input, output){
              4,
              values$raw_kc)
     })
+    
+    #### ELCs ####
     
     # grab how many ELCs they earned (total)
     values$total_elcs = isolate({
@@ -68,6 +76,8 @@ shinyServer(function(input, output){
                     values$total_elcs - 5),
              0)
     })
+    
+    #### Totalling ####
     
     # calculate their total score for the class so far
     values$total_score<-isolate({

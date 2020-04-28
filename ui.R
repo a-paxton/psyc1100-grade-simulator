@@ -6,7 +6,7 @@ shinyUI(fluidPage(
   theme = shinytheme("cerulean"),
   
   # create title
-  titlePanel("PSYC 1100 Grade Simulator (Fall 2019)"),
+  titlePanel("PSYC 1100 Grade Simulator (Spring 2020)"),
   
   # create sidebar
   sidebarLayout(
