@@ -186,7 +186,7 @@ shinyUI(fluidPage(
                br(),            
                
                # numeric: input total writing credit ELCs
-               numericInput("elc_questions",
+               numericInput("elc_question_credits",
                             label = h4(strong("ELC: ",
                                               "Total credits earned from writing questions")),
                             min = 0, value = 0, max = 9),

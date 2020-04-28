@@ -90,7 +90,9 @@ shinyServer(function(input, output){
     
     # grab how many ELCs they earned (total)
     values$total_elcs = isolate({
-      input$elc_participant_pool_credits + input$elc_writing_credits
+      sum(c(input$elc_participant_pool_credits,
+            input$elc_writing_credits,
+            input$elc_question_credits))
     })
     
     # calculate the proportion of the required ELCs earned
@@ -104,7 +106,7 @@ shinyServer(function(input, output){
     # (anything over the required 5 ELCs; up to 4 extra-credit ELCs)
     values$extra_credit_elcs = isolate({
       ifelse(values$total_elcs > 5,
-             ifelse(values$total_elcs - 5 > 4,
+             ifelse((values$total_elcs - 5) > 4,
                     4,
                     values$total_elcs - 5),
              0)
