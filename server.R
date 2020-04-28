@@ -65,14 +65,18 @@ shinyServer(function(input, output){
     
     # calculate and transform the lab score
     values$lab_score = isolate({
-      min(input$lab_score, 110) * .8
+      min(input$lab_score, 110) * .7
     })
     
     #### Knowledge Checks ####
     
     # grab how many KC points they earned (total)
     values$raw_kc = isolate({
-      input$kc_1/20 + input$kc_2/20 + input$kc_3/20 + input$kc_4/20 + input$kc_5/10 + input$kc_6/10 
+      sum(c(input$kc_1/20,
+            input$kc_2/20,
+            input$kc_3/20,
+            input$kc_4/20,
+            input$kc_5/20))
     })
     
     # calculate how much extra credit they got from KCs (up to 4)
@@ -97,11 +101,11 @@ shinyServer(function(input, output){
     })
     
     # calculate extra credit from ELCs 
-    # (anything over the required 5 ELCs; up to 6 extra-credit ELCs)
+    # (anything over the required 5 ELCs; up to 4 extra-credit ELCs)
     values$extra_credit_elcs = isolate({
       ifelse(values$total_elcs > 5,
-             ifelse(values$total_elcs - 5 > 6,
-                    6,
+             ifelse(values$total_elcs - 5 > 4,
+                    4,
                     values$total_elcs - 5),
              0)
     })
