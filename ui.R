@@ -63,11 +63,12 @@ shinyUI(fluidPage(
       
       # spit out grades
       p(h5(strong("Simulated grade")),
-        #"Final grades will not be rounded up or down."
+        "Grades are rounded to the nearest whole number.",
+        "For more, see recent announcement on HuskyCT."
       ),
       tags$ul(
         tags$li(strong("Simulated points: "), textOutput("text_grade")),
-        tags$li(strong("Simulated percent: "), textOutput("text_percent")),
+        # tags$li(strong("Simulated percent: "), textOutput("text_percent")),
         tags$li(strong("Simulated letter: "), textOutput("text_comment")),
         tags$li(strong("Simulated grade needed on Optional Final to pass the class (D-): "), 
                 textOutput("text_passing_grade")),

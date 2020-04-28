@@ -113,7 +113,7 @@ shinyServer(function(input, output){
     #### Totalling ####
     
     # calculate their total score for the class so far
-    values$total_score <- isolate({
+    values$total_score_unrounded <- isolate({
       sum(c(values$exam_scores,
             values$quiz_score,
             values$lab_score,
@@ -122,8 +122,18 @@ shinyServer(function(input, output){
             values$extra_credit_elcs))
     })
     
+    # round up if .5 or higher, down if not
+    values$total_score_decimals <- isolate({ 
+      values$total_score_unrounded - floor(values$total_score_unrounded)
+    })
+    values$total_score <- isolate({ 
+      ifelse(values$total_score_decimals >= .5,
+             floor(values$total_score_unrounded) + 1,
+             floor(values$total_score_unrounded))
+    })
+    
     # calculate the scores before Optional Final
-    values$up_to_final <- isolate({
+    values$up_to_final_unrounded <- isolate({
       sum(c(values$exam_1_score,
             values$exam_2_score,
             values$exam_3_score,
@@ -132,6 +142,16 @@ shinyServer(function(input, output){
             values$required_elcs,
             values$extra_credit_kc,
             values$extra_credit_elcs))
+    })
+    
+    # round up if .5 or higher, down if not
+    values$up_to_final_decimals <- isolate({ 
+      values$up_to_final_unrounded - floor(values$up_to_final_unrounded)
+    })
+    values$up_to_final <- isolate({ 
+      ifelse(values$up_to_final_decimals >= .5,
+             floor(values$up_to_final_unrounded) + 1,
+             floor(values$up_to_final_unrounded))
     })
     
   })
@@ -143,39 +163,39 @@ shinyServer(function(input, output){
       paste0(values$total_score, " points")
   })
   
-  # output the percentage earned
-  #values$total_percent = reactiveVal()
-  output$text_percent<-renderText({
-    if(input$action_total==0) ""
-    else
-      paste0(values$total_score/400 * 100, "%")
-  })
+  # # output the percentage earned
+  # #values$total_percent = reactiveVal()
+  # output$text_percent<-renderText({
+  #   if(input$action_total==0) ""
+  #   else
+  #     paste0(values$total_score/400 * 100, "%")
+  # })
   
   # create letter grade text
   output$text_comment<-renderText({
     if(input$action_total==0) ""
     else({
-      if((values$total_score/400 * 100)>=93)
+      if(values$total_score>=372)
         paste("A")
-      else if((values$total_score/400 * 100)>=90)
+      else if(values$total_score>=360)
         paste("A-")
-      else if((values$total_score/400 * 100)>=87)
+      else if(values$total_score>=348)
         paste("B+")
-      else if((values$total_score/400 * 100)>=83)
+      else if(values$total_score>=332)
         paste("B")
-      else if((values$total_score/400 * 100)>=80)
+      else if(values$total_score>=320)
         paste("B-")
-      else if((values$total_score/400 * 100)>=77)
+      else if(values$total_score>=308)
         paste("C+")
-      else if((values$total_score/400 * 100)>=73)
+      else if(values$total_score>=292)
         paste("C")
-      else if((values$total_score/400 * 100)>=70)
+      else if(values$total_score>=280)
         paste("C-")
-      else if((values$total_score/400 * 100)>=67)
+      else if(values$total_score>=268)
         paste("D+")
-      else if((values$total_score/400 * 100)>=63)
+      else if(values$total_score>=252)
         paste("D")
-      else if((values$total_score/400 * 100)>=55)
+      else if(values$total_score>=220)
         paste("D-")
       else
         paste("F")
