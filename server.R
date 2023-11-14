@@ -1,5 +1,6 @@
 library(shiny)
 
+
 # start the server
 shinyServer(function(input, output){
   values<-reactiveValues()
@@ -225,6 +226,43 @@ shinyServer(function(input, output){
                                             values$exam_2_score,
                                             values$exam_3_score)))
   })
+  
+  # set up our Preps
+  prep_checkboxes = list()
+  for (i in 1:21){
+    prep_label = paste0("Prep ", i)
+    prep_checkboxes[[i]] <- checkboxInput(prep_label, prep_label)
+  }
+  output$satisfactory_prep <- renderUI(prep_checkboxes)
+  
+  # set up our Actives
+  kc_checkboxes = list()
+  lr_checkboxes = list()
+  active_checkboxes = list()
+
+  for (i in 2:21){
+    kc_label = paste0("KC ", i)
+    kc_checkboxes[[i]] <- checkboxInput(kc_label, kc_label)
+    
+    lr_label = paste0("L&R ", i)
+    lr_checkboxes[[i]] <- checkboxInput(lr_label, lr_label)
+    
+    active_label = paste0("Active ", i)
+    active_checkboxes[[i]] <- checkboxInput(active_label, active_label)
+
+  }
+  output$satisfactory_kc <- renderUI(kc_checkboxes)
+  output$satisfactory_lr <- renderUI(lr_checkboxes)
+  output$satisfactory_active <- renderUI(active_checkboxes)
+  
+  # set up our CTSes
+  cts_checkboxes = list()
+  for (i in 1:4){
+    cts_label = paste0("CTS ", i)
+    cts_checkboxes[[i]] <- checkboxInput(cts_label, cts_label)
+  }
+  output$satisfactory_cts <- renderUI(cts_checkboxes)
+  
   
 })
 # })

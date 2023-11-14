@@ -219,127 +219,74 @@ shinyUI(fluidPage(
                                       FALSE),
                  )),
                
-               br(),
+               ##### 2. Preps #####
                
-               # quiz section
                hr(),
-               h3("Quizzes"),
+               h3("Preparations for Class Meeting (Preps)"),
+               h5("Check the box for if you earned a Satisfactory for the item."),
+               
+               # checkboxes: check each Satisfactory Prep
+               uiOutput("satisfactory_prep"),
+               
+               ##### 3. Actives #####
+               
                hr(),
+               h3("Active Learning (Actives)"),
+               h5("Check the box for if you earned a Satisfactory for each KC and each L&R."),
+               h5("Remember: To earn Satisfactory on an Active, you must earn a Satisfactory on both the KC and L&R."),
+               fluidRow(
+                 column(2, 
+                        h4("KCs"),
+                        # checkboxes: check each Satisfactory KC
+                        uiOutput("satisfactory_kc")
+                 ),
+                 column(2, 
+                        h4("L&Rs"),
+                        # checkboxes: check each Satisfactory L&R
+                        uiOutput("satisfactory_lr")
+                 )),
                
-               # checkbox: indicate Warm Up Quiz
-               checkboxInput("quiz_warm_up",
-                             label = h4(strong("Quiz: Warm Up Quiz"),
-                                        br(),"(check if you took it)"),
-                             FALSE),
-               br(),
+               ##### 4. CTSes #####
                
-               # checkbox: put Syllabus Quiz points
-               numericInput("quiz_syllabus",
-                            label = h4(strong("Quiz: Syllabus Quiz"),
-                                       br(),"(out of 15)"),
-                            min = 0, max = 15, value = 0),
-               br(),
+               hr(),
+               h3("Critical Thinking & Synthesis (CTSes)"),
+               h5("Check the box for if you earned a Satisfactory for the overall CTS."),
                
-               # checkbox: indicate Post-Exam 1 Reflection Quiz
-               checkboxInput("quiz_post_exam1",
-                             label = h4(strong("Quiz: Post-Exam 1 Reflection"),
-                                        br(),"(check if you took it)"),
-                             FALSE),
-               br(),
+               # checkboxes: check each Satisfactory KC
+               uiOutput("satisfactory_cts"),
                
-               # checkbox: indicate Post-Exam 2 Reflection Quiz
-               checkboxInput("quiz_post_exam2",
-                             label = h4(strong("Quiz: Post-Exam 2 Reflection"),
-                                        br(),"(check if you took it)"),
-                             FALSE),
-               br(),
+               ##### 5. ELCs #####
                
-               # lab section
+               hr(),
+               h3("ELCs"),
+               
+               fluidRow(
+                 column(3,
+                        # numeric: input total participant pool ELCs
+                        numericInput("elc_participant_pool_credits",
+                                     label = h5("Total credits earned from Participant Pool"),
+                                     min = 0, value = 0)
+                 ),
+                 column(3,
+                        
+                        # numeric: input total alternate assignment
+                        numericInput("elc_alt_assignment_credits",
+                                     label = h5("Total credits earned from Alternate Assignments"),
+                                     min = 0, value = 0, max = 30),
+                 )
+               ),   
+               
+               ##### 6. Lab #####
+               
                hr(),
                h3("Lab"),
-               hr(),
                
                # numeric: input lab percentage
                numericInput("lab_score",
-                            label = h4(strong("Lab percentage"),
-                                       br(),"(out of 100)"),
+                            label = h5("Total percentage in lab (out of 100)"),
                             min = 0, max = 110, value = 0),
-               br(),       
+               br(),    
                
-               # ELC section
-               hr(),
-               h3("ELCs"),
-               hr(),
-               
-               # numeric: input total participant pool ELCs
-               numericInput("elc_participant_pool_credits",
-                            label = h4(strong("ELC: ",
-                                              "Total credits earned from Participant Pool")),
-                            min = 0, value = 0),
-               br(),
-               
-               # numeric: input total writing credit ELCs
-               numericInput("elc_writing_credits",
-                            label = h4(strong("ELC: ",
-                                              "Total credits earned from writing essays")),
-                            min = 0, value = 0, max = 30),
-               
-               br(),            
-               
-               # numeric: input total writing credit ELCs
-               numericInput("elc_question_credits",
-                            label = h4(strong("ELC: ",
-                                              "Total credits earned from writing questions")),
-                            min = 0, value = 0, max = 9),
-               
-               br(),            
-               
-               # KC section
-               hr(),
-               h3("Knowledge Checks"),
-               hr(),
-               
-               # numeric: input Knowledge Check 1 score
-               numericInput("kc_1",
-                            label = h4(strong("Knowledge Check 1 Score"),
-                                       br(),"(out of 20)"),
-                            min = 0, max = 20, value = 0),
-               br(),            
-               
-               # numeric: input Knowledge Check 2 score
-               numericInput("kc_2",
-                            label = h4(strong("Knowledge Check 2 Score"),
-                                       br(),"(out of 20)"),
-                            min = 0, max = 20, value = 0),
-               br(),            
-               
-               # numeric: input Knowledge Check 3 score
-               numericInput("kc_3",
-                            label = h4(strong("Knowledge Check 3 Score"),
-                                       br(),"(out of 20)"),
-                            min = 0, max = 20, value = 0),
-               br(),            
-               
-               # numeric: input Knowledge Check 4 score
-               numericInput("kc_4",
-                            label = h4(strong("Knowledge Check 4 Score"),
-                                       br(),"(out of 20)"),
-                            min = 0, max = 20, value = 0),
-               br(),            
-               
-               # numeric: input Knowledge Check 5 score
-               numericInput("kc_5",
-                            label = h4(strong("Knowledge Check 5 Score"),
-                                       br(),"(out of 20)"),
-                            min = 0, max = 20, value = 0),
-               
-               br(),            
-               
-               # # numeric: input Knowledge Check 6 score
-               # numericInput("kc_6",
-               #              label = h4(strong("Knowledge Check 6 Score"),
-               #                         br(),"(out of 20)"),
-               #              min = 0, max = 20, value = 0)
                
       )
     )
