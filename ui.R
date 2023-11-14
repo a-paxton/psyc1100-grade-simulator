@@ -6,7 +6,7 @@ shinyUI(fluidPage(
   theme = shinytheme("cerulean"),
   
   # create title
-  titlePanel("PSYC 1100 Grade Simulator (Spring 2020)"),
+  titlePanel("PSYC 1100 Grade Simulator (Fall 2023)"),
   
   # create sidebar
   sidebarLayout(
@@ -22,15 +22,13 @@ shinyUI(fluidPage(
           tags$li("For exam scores, please enter the curved grade that you earned. 
                   Failing to enter the curved grade will dramatically change your 
                   grade simulations."),
-          tags$li("For the lab grade, please enter the percentage that you earned
-                    in class (out of 100)."),
-          tags$li("For the ELCs, please enter the number of credits that you earned 
-                    in the Participant Pool, the essay-writing alternative, and the
-                    question-writing alternative separately."),
-          tags$li("For each Knowledge Check, please enter the actual score that
-                    you earned (out of 20)."),
-          tags$li("Each text box",strong("must"), "have a number in it, even if that 
-                  number is zero."),
+          tags$li("For each Prep, check the box if you earned a Satisfactory. (Keep it blank if you earned an Unsatisfactory.)"),
+          tags$li("For each KC, check the box if you earned a Satisfactory. (Keep it blank if you earned an Unsatisfactory.)"),
+          tags$li("For each L&R, check the box if you earned a Satisfactory. (Keep it blank if you earned an Unsatisfactory.)"),
+          tags$li("For each CTS, check the box if you earned a Satisfactory for the overall grade. (Keep it blank if you earned an Unsatisfactory.)"),
+          tags$li("For ELCs, please enter the number of credits that you earned 
+                    in the Participant Pool and Alternative Assignments"),
+          tags$li("For the lab grade, please enter the percentage that you earned class (out of 100)."),
           tags$li("After you have entered all grades, press 'Simulate!' to simulate your 
                   total grade so far.")
         ),
