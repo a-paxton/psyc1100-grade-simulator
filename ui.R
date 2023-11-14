@@ -82,39 +82,142 @@ shinyUI(fluidPage(
     mainPanel(
       tabPanel("Grade",
                
-               # exam section
+               # Exam 1 section
                hr(),
-               h3("Exams"),
+               h3("Exam 1"),
+               
+               fluidRow(
+                 column(width = 4,
+                        
+                        ##### 1. Exams #####
+                        
+                        # numeric: input Exam 1 score
+                        numericInput("exam_1_score_first",
+                                     label = h4(strong("Exam 1: First Attempt Score"),
+                                                br(),"(out of 82)"),
+                                     min = 0, max = 85, value = 0)
+                 ),
+                 column(width = 4,
+                        
+                        # numeric: input second attempt Exam 1 score
+                        numericInput("exam_1_score_second",
+                                     label = h4(strong("Exam 1: Second Attempt Score"),
+                                                br(),"(out of 82)"),
+                                     min = 0, max = 85, value = 0),
+                        checkboxInput("exam_1_second_attempt",
+                                      label = h5(strong("Check here if you did not take a second attempt")),
+                                      FALSE),
+                 ),
+                 column(width = 4,
+                        
+                        # numeric: input third attempt Exam 1 score
+                        numericInput("exam_1_score_third",
+                                     label = h4(strong("Third Attempt Exam 1 Score"),
+                                                br(),"(out of 82)"),
+                                     min = 0, max = 85, value = 0),
+                        checkboxInput("exam_1_third_attempt",
+                                      label = h5(strong("Check here if you did not take a third attempt")),
+                                      FALSE),
+                 )),
+               
+               # Exam 2 section
                hr(),
+               h3("Exam 2"),
                
-               # numeric: input Exam 1 score
-               numericInput("exam_1_score",
-                            label = h4(strong(em("Curved"), " Exam 1 Score"),
-                                       br(),"(out of 100)"),
-                            min = 0, max = 115, value = 0),
-               br(),
+               fluidRow(
+                 column(width = 4,
+                        
+                        # numeric: input first attempt Exam 2 score
+                        numericInput("exam_2_score_first",
+                                     label = h4(strong("Exam 2: First Attempt Score"),
+                                                br(),"(out of 83)"),
+                                     min = 0, max = 85, value = 0),
+                 ),
+                 column(width = 4,
+                        
+                        # numeric: input second attempt Exam 2 score
+                        numericInput("exam_2_score_second",
+                                     label = h4(strong("Exam 2: Second Attempt Score"),
+                                                br(),"(out of 83)"),
+                                     min = 0, max = 85, value = 0),
+                        checkboxInput("exam_2_second_attempt",
+                                      label = h5(strong("Check here if you did not take a second attempt")),
+                                      FALSE),
+                 ),
+                 column(width = 4,
+                        
+                        # numeric: input third attempt Exam 2 score
+                        numericInput("exam_2_score_third",
+                                     label = h4(strong("Exam 2: Third Attempt Score"),
+                                                br(),"(out of 83)"),
+                                     min = 0, max = 85, value = 0),
+                        checkboxInput("exam_2_third_attempt",
+                                      label = h5(strong("Check here if you did not take a third attempt")),
+                                      FALSE),
+                 )),
                
-               # numeric: input Exam 2 score
-               numericInput("exam_2_score",
-                            label = h4(strong(em("Curved"), "Exam 2 Score"),
-                                       br(),"(out of 100)"),
-                            min = 0, max = 115, value = 0),
+               # Exam 3 section
+               hr(),
+               h3("Exam 3"),
+               fluidRow(
+                 column(width = 4,
+                        
+                        # numeric: input first attempt Exam 3 score
+                        numericInput("exam_3_score_first",
+                                     label = h4(strong("Exam 3: First Attempt Score"),
+                                                br(),"(out of 78)"),
+                                     min = 0, max = 85, value = 0),
+                        
+                 ),
+                 column(width = 4,
+                        
+                        # numeric: input second attempt Exam 3 score
+                        numericInput("exam_3_score_second",
+                                     label = h4(strong("Exam 3: Second Attempt Score"),
+                                                br(),"(out of 78)"),
+                                     min = 0, max = 85, value = 0),
+                        checkboxInput("exam_3_second_attempt",
+                                      label = h5(strong("Check here if you did not take a second attempt")),
+                                      FALSE),
+                 ),
+                 column(width = 4,
+                        
+                        # numeric: input third attempt Exam 3 score
+                        numericInput("exam_3_score_third",
+                                     label = h4(strong("Exam 3: Third Attempt Score"),
+                                                br(),"(out of 78)"),
+                                     min = 0, max = 85, value = 0),
+                        checkboxInput("exam_3_third_attempt",
+                                      label = h5(strong("Check here if you did not take a third attempt")),
+                                      FALSE),
+                 )),
                
-               br(),
-               
-               # numeric: input Exam 3 score
-               numericInput("exam_3_score",
-                            label = h4(strong(em("Curved"), "Exam 3 Score"),
-                                       br(),"(out of 100)"),
-                            min = 0, max = 115, value = 0),
-               
-               br(),
-               
-               # numeric: input Optional Final Exam score
-               numericInput("final_exam_score",
-                            label = h4(strong("Estimated Optional Final Exam Score"),
-                                       br(),"(out of 100)"),
-                            min = 0, max = 115, value = 0),
+               # Optional Final section
+               hr(),
+               h3("Cumulative Final"),
+               fluidRow(
+                 column(width = 4,
+                        
+                        # numeric: input first Cumulative Final Exam percent
+                        numericInput("final_exam_percent_first",
+                                     label = h4(strong("Cumulative Final: Estimated First Attempt Percentage"),
+                                                br(),"(out of 100%)"),
+                                     min = 0, max = 110, value = 0),
+                        checkboxInput("final_exam_taking",
+                                      label = h5(strong("Check here if you will not take the Cumulative Final")),
+                                      FALSE),
+                 ),
+                 column(width = 4,
+                        
+                        # numeric: input Optional Final Exam score
+                        numericInput("final_exam_percent_second",
+                                     label = h4(strong("Cumulative Final: Estimated Second Attempt Percentage"),
+                                                br(),"(out of 100%)"),
+                                     min = 0, max = 110, value = 0),
+                        checkboxInput("final_exam_second_attempt",
+                                      label = h5(strong("Check here if you will not take a second attempt")),
+                                      FALSE),
+                 )),
                
                br(),
                
