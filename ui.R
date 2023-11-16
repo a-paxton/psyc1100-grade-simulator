@@ -8,7 +8,8 @@ shinyUI(fluidPage(
   # create title
   titlePanel("PSYC 1100 Grade Simulator (Fall 2023)"),
   
-  # create sidebar
+  ##### 1. Instructions #####
+  
   sidebarLayout(
     sidebarPanel(
       p(h5(strong("Instructions"))),
@@ -19,63 +20,95 @@ shinyUI(fluidPage(
                 inaccurate simulations."),
         tags$li(strong("Please read and follow all instructions carefully.")),
         tags$ul(
-          tags$li("For exam scores, please enter the curved grade that you earned. 
-                  Failing to enter the curved grade will dramatically change your 
-                  grade simulations."),
-          tags$li("For each Prep, check the box if you earned a Satisfactory. (Keep it blank if you earned an Unsatisfactory.)"),
-          tags$li("For each KC, check the box if you earned a Satisfactory. (Keep it blank if you earned an Unsatisfactory.)"),
-          tags$li("For each L&R, check the box if you earned a Satisfactory. (Keep it blank if you earned an Unsatisfactory.)"),
-          tags$li("For each CTS, check the box if you earned a Satisfactory for the overall grade. (Keep it blank if you earned an Unsatisfactory.)"),
+          tags$li("For exam scores, please enter the points that you earned (not the percentage). 
+                  If there was a curve for the grade, remember to input your curved score, not the original score.
+                  Check the boxes for ALL attempts that you did not take."),
+          tags$li("For each Prep, Active, and CTS, check the box if you earned a Satisfactory. 
+                  (Do not check it if you earned an Unsatisfactory.)"),
           tags$li("For ELCs, please enter the number of credits that you earned 
                     in the Participant Pool and Alternative Assignments"),
-          tags$li("For the lab grade, please enter the percentage that you earned class (out of 100)."),
+          tags$li("For the lab grade, please enter the percentage that you earned (out of 100)."),
           tags$li("After you have entered all grades, press 'Simulate!' to simulate your 
-                  total grade so far.")
+                  course grade so far.")
         ),
         tags$li("Be sure to", strong("check, double-check, and", em("triple-check")), 
                 "the values that you entered to avoid making any mistakes when using 
                 this grade simulator."),
-        tags$li("To simulate your final course grade with the Optional Final Exam, simply 
+        tags$li("To simulate your final course grade with the Cumulative Final Exam, simply 
                   type in a grade (between 0-100) and hit 'Simulate!' again."),
-        tags$li("To simulate your final course grade without taking the Optional Final
-                  Exam, enter '0' for the Optional Final Exam box.")),
+        tags$li("To simulate your final course grade without taking the Cumulative Final
+                  Exam, check the box below the Optional Final Exam box.")),
       hr(),
       
-      # specify the grade
-      p(h5(strong("Grading scale")),
-        ("For more, see syllabus.")),
-      tags$ul(
-        tags$li("372 points  =<	   A"),
-        tags$li("360 points  =<    A-    <   372 points"),
-        tags$li("348 points  =<    B+    <   360 points"),
-        tags$li("332 points  =<    B     <   348 points"),
-        tags$li("320 points  =<    B-    <   332 points"),
-        tags$li("308 points  =<    C+    <   320 points"),
-        tags$li("292 points  =<    C     <   308 points"),
-        tags$li("280 points  =<    C-    <   292 points"),
-        tags$li("268 points  =<    D+    <   280 points"),
-        tags$li("252 points  =<    D     <   268 points"),
-        tags$li("220 points  =<    D-    <   252 points"),
-        tags$li("                  F     <   220 points")),
-      hr(),
-      
-      # spit out grades
-      p(h5(strong("Simulated grade")),
-        "Grades are rounded to the nearest whole number.",
-        "For more, see recent announcement on HuskyCT."
-      ),
-      tags$ul(
-        tags$li(strong("Simulated points: "), textOutput("text_grade")),
-        # tags$li(strong("Simulated percent: "), textOutput("text_percent")),
-        tags$li(strong("Simulated letter: "), textOutput("text_comment")),
-        tags$li(strong("Simulated grade needed on Optional Final to pass the class (D-): "), 
-                textOutput("text_passing_grade")),
-        tags$li(strong("Simulated grade needed on Optional Final to make a C in the class: "), 
-                textOutput("text_cgrade"))),
-      hr(),
+      ##### 2. Simulated Results #####
       
       # create total button
-      actionButton("action_total", label = "Simulate!")        
+      actionButton("action_total", label = "Simulate!"),        
+      
+      br(),
+      hr(),
+      
+      p(h5(strong("Simulated Results"))),
+      tags$ul(
+        tags$li(strong("Exams"),
+                tags$ul(
+                  tags$li("Grade Bundle: ", textOutput("exam_letter", inline = TRUE), 
+                          tags$ul(
+                            tags$li(strong("Remember: Your performance on the exam category sets the",
+                                    em("maximum"), "letter grade that you can earn in the class."), "This gradebook item
+                                    has the largest impact on your overall grade."))
+                          ),
+                  tags$li("Satisfactory exams on first attempt: ", textOutput("exams_satisfactory_first", inline = TRUE)
+                  ),
+                  tags$li("Satisfactory exams on second attempt: ", textOutput("exams_satisfactory_second", inline = TRUE)
+                  ),
+                  tags$li("Exam average (best of three exams): ", textOutput("simulated_exam_average", inline = TRUE),
+                          tags$ul(
+                            tags$li("Exam 1 average (all attempts): ", textOutput("exam_1_average", inline = TRUE)
+                            ),
+                            tags$li("Exam 2 average (all attempts): ", textOutput("exam_2_average", inline = TRUE)
+                            ),
+                            tags$li("Exam 3 average (all attempts): ", textOutput("exam_3_average", inline = TRUE)
+                            ),
+                            tags$li("Cumulative Final average (all attempts): ", textOutput("sim_final_average", inline = TRUE)
+                            )
+                          )
+                  ),
+                ),
+        ),
+        tags$li(strong("Preps"),
+                tags$ul(
+                  tags$li("Grade Bundle:", textOutput("prep_letter", inline = TRUE)),
+                  tags$li("Total Satisfactory:", textOutput("total_preps", inline = TRUE)),
+                ),
+        ),
+        tags$li(strong("Actives"),
+                tags$ul(
+                  tags$li("Grade Bundle:", textOutput("active_letter", inline = TRUE)),
+                  tags$li("Total Satisfactory:", textOutput("total_actives", inline = TRUE)),
+                ),
+        ),
+        tags$li(strong("CTSes"),
+                tags$ul(
+                  tags$li("Grade Bundle:", textOutput("cts_letter", inline = TRUE)),
+                  tags$li("Total Satisfactory:", textOutput("total_ctses", inline = TRUE)),
+                ),
+        ),
+        tags$li(strong("ELCs"),
+                tags$ul(
+                  tags$li("Grade Bundle:", textOutput("elc_letter", inline = TRUE)),
+                  tags$li("Total Credits:", textOutput("total_elcs", inline = TRUE)),
+                ),
+        ),
+        tags$li(strong("Lab"),
+                tags$ul(
+                  tags$li("Grade Bundle:", textOutput("lab_letter", inline = TRUE)),
+                  tags$li("Lab Percentage:", textOutput("lab_score", inline = TRUE)),
+                ),
+        ),
+      ),
+      hr(),
+      
     ),
     
     # create main panel
