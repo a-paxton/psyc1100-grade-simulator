@@ -1,5 +1,6 @@
 library(shiny)
 library(shinythemes)
+library(tidyverse)
 
 # create the user interface
 shinyUI(fluidPage(
@@ -419,7 +420,7 @@ shinyUI(fluidPage(
                              label = "CTS 04",
                              FALSE),
                
-               ##### 5. ELCs #####
+               ##### 7. ELCs #####
                
                hr(),
                h3("ELCs"),
@@ -440,7 +441,7 @@ shinyUI(fluidPage(
                  )
                ),   
                
-               ##### 6. Lab #####
+               ##### 8. Lab #####
                
                hr(),
                h3("Lab"),
@@ -450,8 +451,6 @@ shinyUI(fluidPage(
                             label = h5("Total percentage in lab (out of 100)"),
                             min = 0, max = 110, value = 0),
                br(),    
-               
-               
       )
     )
   ),
