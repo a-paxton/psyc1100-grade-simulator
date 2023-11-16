@@ -401,4 +401,4 @@ shinyServer(function(input, output){
     output$lab_score = renderText({ paste0( values$lab_score ) })
     
   })
-}
+})
