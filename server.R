@@ -1,5 +1,5 @@
 library(shiny)
-
+library(tidyverse)
 
 # start the server
 shinyServer(function(input, output){
@@ -269,205 +269,136 @@ shinyServer(function(input, output){
       }
     })
     
-    # calculate and transform the lab score
-    values$lab_score = isolate({
-      min(input$lab_score, 110) * .7
+    # report out to the student
+    output$exam_letter = renderText({ paste0( values$exam_grade ) })
+    
+    ###### 2. Preps ######
+    
+    values$satisfactory_preps = isolate({
+      sum(c(input$s_prep_01,
+            input$s_prep_02,
+            input$s_prep_03,
+            input$s_prep_04,
+            input$s_prep_05,
+            input$s_prep_06,
+            input$s_prep_07,
+            input$s_prep_08,
+            input$s_prep_09,
+            input$s_prep_10,
+            input$s_prep_11,
+            input$s_prep_12,
+            input$s_prep_13,
+            input$s_prep_14,
+            input$s_prep_15,
+            input$s_prep_16,
+            input$s_prep_17,
+            input$s_prep_18,
+            input$s_prep_19,
+            input$s_prep_20,
+            input$s_prep_21),
+          na.rm=TRUE
+      )
     })
     
-    #### Knowledge Checks ####
-    
-    # grab how many KC points they earned (total)
-    values$raw_kc = isolate({
-      sum(c(input$kc_1/20,
-            input$kc_2/20,
-            input$kc_3/20,
-            input$kc_4/20,
-            input$kc_5/20))
+    # figure out what the letter grade should be for that value
+    values$prep_grade = isolate({
+      grade_bundles$letter_grade[which(values$satisfactory_preps >= grade_bundles$prep_satisfactory)[1]]
     })
     
-    # calculate how much extra credit they got from KCs (up to 4)
-    values$extra_credit_kc = isolate({
-      ifelse(values$raw_kc >= 4,
-             4,
-             values$raw_kc)
+    # report out to the student
+    output$total_preps = renderText({ paste0( values$satisfactory_preps ) })
+    output$prep_letter = renderText({ paste0( values$prep_grade ) })
+    
+    ###### 3. Actives ######
+    
+    # tally satisfactory actives
+    values$satisfactory_actives = isolate({
+      sum(c(input$s_active_02,
+            input$s_active_03,
+            input$s_active_04,
+            input$s_active_05,
+            input$s_active_06,
+            input$s_active_07,
+            input$s_active_08,
+            input$s_active_09,
+            input$s_active_10,
+            input$s_active_11,
+            input$s_active_12,
+            input$s_active_13,
+            input$s_active_14,
+            input$s_active_15,
+            input$s_active_16,
+            input$s_active_17,
+            input$s_active_18,
+            input$s_active_19,
+            input$s_active_20,
+            input$s_active_21),
+          na.rm=TRUE
+      )
     })
     
-    #### ELCs ####
+    # figure out what the letter grade should be for that value
+    values$active_grade = isolate({
+      grade_bundles$letter_grade[which(values$satisfactory_actives >= grade_bundles$active_satisfactory)[1]]
+    })
+    
+    # report out to the student
+    output$total_actives = renderText({ paste0( values$satisfactory_actives ) })
+    output$active_letter = renderText({ paste0( values$active_grade ) })
+    
+    ###### 4. CTSes ######
+    
+    # extract how many CTSes they earned
+    values$cts_satisfactory = isolate({
+      sum(c(input$s_cts_01,
+            input$s_cts_02,
+            input$s_cts_03,
+            input$s_cts_04),
+          na.rm=TRUE
+      )
+    })
+    
+    # figure out what the letter grade should be for that value
+    values$cts_grade = isolate({
+      grade_bundles$letter_grade[which(values$cts_satisfactory >= grade_bundles$cts_satisfactory)[1]]
+    })
+    
+    # report out to the student
+    output$total_ctses = renderText({ paste0( values$cts_satisfactory ) })
+    output$cts_letter = renderText({ paste0( values$cts_grade ) })
+    
+    ###### 5. ELCs ######
     
     # grab how many ELCs they earned (total)
-    values$total_elcs = isolate({
+    values$elcs = isolate({
       sum(c(input$elc_participant_pool_credits,
-            input$elc_writing_credits,
-            input$elc_question_credits))
+            input$elc_alt_assignment_credits))
     })
     
-    # calculate the proportion of the required ELCs earned
-    values$required_elcs = isolate({
-      ifelse(values$total_elcs >= 5,
-             20,
-             values$total_elcs/5)
+    # figure out what the letter grade should be for that value
+    values$elc_grade = isolate({
+      grade_bundles$letter_grade[which(values$elcs >= grade_bundles$elcs)[1]]
     })
     
-    # calculate extra credit from ELCs 
-    # (anything over the required 5 ELCs; up to 4 extra-credit ELCs)
-    values$extra_credit_elcs = isolate({
-      ifelse(values$total_elcs > 5,
-             ifelse((values$total_elcs - 5) > 4,
-                    4,
-                    values$total_elcs - 5),
-             0)
+    # report out to the student
+    output$total_elcs = renderText({ paste0( values$elcs ) })
+    output$elc_letter = renderText({ paste0( values$elc_grade ) })
+    
+    ###### 6. Lab ######
+    
+    # calculate lab percentage
+    values$lab_score = isolate({
+      min(input$lab_score, 110)
     })
     
-    #### Totalling ####
-    
-    # calculate their total score for the class so far
-    values$total_score_unrounded <- isolate({
-      sum(c(values$exam_scores,
-            values$quiz_score,
-            values$lab_score,
-            values$required_elcs,
-            values$extra_credit_kc,
-            values$extra_credit_elcs))
+    # figure out what the letter grade should be for that value
+    values$lab_grade = isolate({
+      grade_bundles$letter_grade[which(values$lab_score >= grade_bundles$lab)[1]]
     })
     
-    # round up if .5 or higher, down if not
-    values$total_score_decimals <- isolate({ 
-      values$total_score_unrounded - floor(values$total_score_unrounded)
-    })
-    values$total_score <- isolate({ 
-      ifelse(values$total_score_decimals >= .5,
-             floor(values$total_score_unrounded) + 1,
-             floor(values$total_score_unrounded))
-    })
-    
-    # calculate the scores before Optional Final
-    values$up_to_final_unrounded <- isolate({
-      sum(c(values$exam_1_score,
-            values$exam_2_score,
-            values$exam_3_score,
-            values$quiz_score,
-            values$lab_score,
-            values$required_elcs,
-            values$extra_credit_kc,
-            values$extra_credit_elcs))
-    })
-    
-    # round up if .5 or higher, down if not
-    values$up_to_final_decimals <- isolate({ 
-      values$up_to_final_unrounded - floor(values$up_to_final_unrounded)
-    })
-    values$up_to_final <- isolate({ 
-      ifelse(values$up_to_final_decimals >= .5,
-             floor(values$up_to_final_unrounded) + 1,
-             floor(values$up_to_final_unrounded))
-    })
+    # report out to the student
+    output$lab_letter = renderText({ paste0( values$lab_grade ) })
+    output$lab_score = renderText({ paste0( values$lab_score ) })
     
   })
-  
-  # output the number of points earned
-  output$text_grade<-renderText({
-    if(input$action_total==0) ""
-    else
-      paste0(values$total_score, " points")
-  })
-  
-  # # output the percentage earned
-  # #values$total_percent = reactiveVal()
-  # output$text_percent<-renderText({
-  #   if(input$action_total==0) ""
-  #   else
-  #     paste0(values$total_score/400 * 100, "%")
-  # })
-  
-  # create letter grade text
-  output$text_comment<-renderText({
-    if(input$action_total==0) ""
-    else({
-      if(values$total_score>=372)
-        paste("A")
-      else if(values$total_score>=360)
-        paste("A-")
-      else if(values$total_score>=348)
-        paste("B+")
-      else if(values$total_score>=332)
-        paste("B")
-      else if(values$total_score>=320)
-        paste("B-")
-      else if(values$total_score>=308)
-        paste("C+")
-      else if(values$total_score>=292)
-        paste("C")
-      else if(values$total_score>=280)
-        paste("C-")
-      else if(values$total_score>=268)
-        paste("D+")
-      else if(values$total_score>=252)
-        paste("D")
-      else if(values$total_score>=220)
-        paste("D-")
-      else
-        paste("F")
-    })
-  })
-  
-  # create text with grade needed pass
-  output$text_passing_grade<-renderText({
-    if(input$action_total==0) ""
-    else if (values$up_to_final >= 220)
-      paste("Simulated grade already at or above a D- (without taking the Optional Final)")
-    else
-      paste(220 - (values$up_to_final + min(values$exam_1_score,
-                                            values$exam_2_score,
-                                            values$exam_3_score)))
-  })
-  
-  # create text with grade needed to make a C
-  output$text_cgrade<-renderText({
-    if(input$action_total==0) ""
-    else if (values$up_to_final >= 292)
-      paste("Simulated grade already at or above a C (without taking the Optional Final)")
-    else
-      paste(292 - (values$up_to_final + min(values$exam_1_score,
-                                            values$exam_2_score,
-                                            values$exam_3_score)))
-  })
-  
-  # set up our Preps
-  prep_checkboxes = list()
-  for (i in 1:21){
-    prep_label = paste0("Prep ", i)
-    prep_checkboxes[[i]] <- checkboxInput(prep_label, prep_label)
-  }
-  output$satisfactory_prep <- renderUI(prep_checkboxes)
-  
-  # set up our Actives
-  kc_checkboxes = list()
-  lr_checkboxes = list()
-  active_checkboxes = list()
-
-  for (i in 2:21){
-    kc_label = paste0("KC ", i)
-    kc_checkboxes[[i]] <- checkboxInput(kc_label, kc_label)
-    
-    lr_label = paste0("L&R ", i)
-    lr_checkboxes[[i]] <- checkboxInput(lr_label, lr_label)
-    
-    active_label = paste0("Active ", i)
-    active_checkboxes[[i]] <- checkboxInput(active_label, active_label)
-
-  }
-  output$satisfactory_kc <- renderUI(kc_checkboxes)
-  output$satisfactory_lr <- renderUI(lr_checkboxes)
-  output$satisfactory_active <- renderUI(active_checkboxes)
-  
-  # set up our CTSes
-  cts_checkboxes = list()
-  for (i in 1:4){
-    cts_label = paste0("CTS ", i)
-    cts_checkboxes[[i]] <- checkboxInput(cts_label, cts_label)
-  }
-  output$satisfactory_cts <- renderUI(cts_checkboxes)
-  
-  
-})
-# })
+}
