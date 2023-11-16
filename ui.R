@@ -115,28 +115,31 @@ shinyUI(fluidPage(
     mainPanel(
       tabPanel("Grade",
                
+               ##### 3. Exams #####
+               
                # Exam 1 section
                hr(),
-               h3("Exam 1"),
+               h3("Exams"),
                
                fluidRow(
                  column(width = 4,
                         
-                        ##### 1. Exams #####
-                        
                         # numeric: input Exam 1 score
                         numericInput("exam_1_score_first",
                                      label = h4(strong("Exam 1: First Attempt Score"),
-                                                br(),"(out of 82)"),
-                                     min = 0, max = 85, value = 0)
+                                                br(),"(out of ", exam_01_max, "points)"),
+                                     min = 0, max = exam_01_max, value = 0),
+                        checkboxInput("exam_1_first_attempt",
+                                      label = h5(strong("Check here if you did not take a first attempt")),
+                                      FALSE),
                  ),
                  column(width = 4,
                         
                         # numeric: input second attempt Exam 1 score
                         numericInput("exam_1_score_second",
                                      label = h4(strong("Exam 1: Second Attempt Score"),
-                                                br(),"(out of 82)"),
-                                     min = 0, max = 85, value = 0),
+                                                br(),"(out of ", exam_01_max, "points)"),
+                                     min = 0, max = exam_01_max, value = 0),
                         checkboxInput("exam_1_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
@@ -146,8 +149,8 @@ shinyUI(fluidPage(
                         # numeric: input third attempt Exam 1 score
                         numericInput("exam_1_score_third",
                                      label = h4(strong("Third Attempt Exam 1 Score"),
-                                                br(),"(out of 82)"),
-                                     min = 0, max = 85, value = 0),
+                                                br(),"(out of ", exam_01_max, "points)"),
+                                     min = 0, max = exam_01_max, value = 0),
                         checkboxInput("exam_1_third_attempt",
                                       label = h5(strong("Check here if you did not take a third attempt")),
                                       FALSE),
@@ -155,7 +158,7 @@ shinyUI(fluidPage(
                
                # Exam 2 section
                hr(),
-               h3("Exam 2"),
+               # h3("Exam 2"),
                
                fluidRow(
                  column(width = 4,
@@ -163,16 +166,19 @@ shinyUI(fluidPage(
                         # numeric: input first attempt Exam 2 score
                         numericInput("exam_2_score_first",
                                      label = h4(strong("Exam 2: First Attempt Score"),
-                                                br(),"(out of 83)"),
-                                     min = 0, max = 85, value = 0),
+                                                br(),"(out of ", exam_02_max, "points)"),
+                                     min = 0, max = exam_02_max, value = 0),
+                        checkboxInput("exam_2_first_attempt",
+                                      label = h5(strong("Check here if you did not take a first attempt")),
+                                      FALSE),
                  ),
                  column(width = 4,
                         
                         # numeric: input second attempt Exam 2 score
                         numericInput("exam_2_score_second",
                                      label = h4(strong("Exam 2: Second Attempt Score"),
-                                                br(),"(out of 83)"),
-                                     min = 0, max = 85, value = 0),
+                                                br(),"(out of ", exam_02_max, "points)"),
+                                     min = 0, max = exam_02_max, value = 0),
                         checkboxInput("exam_2_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
@@ -182,8 +188,8 @@ shinyUI(fluidPage(
                         # numeric: input third attempt Exam 2 score
                         numericInput("exam_2_score_third",
                                      label = h4(strong("Exam 2: Third Attempt Score"),
-                                                br(),"(out of 83)"),
-                                     min = 0, max = 85, value = 0),
+                                                br(),"(out of ", exam_02_max, "points)"),
+                                     min = 0, max = exam_02_max, value = 0),
                         checkboxInput("exam_2_third_attempt",
                                       label = h5(strong("Check here if you did not take a third attempt")),
                                       FALSE),
@@ -191,24 +197,26 @@ shinyUI(fluidPage(
                
                # Exam 3 section
                hr(),
-               h3("Exam 3"),
+               # h3("Exam 3"),
                fluidRow(
                  column(width = 4,
                         
                         # numeric: input first attempt Exam 3 score
                         numericInput("exam_3_score_first",
                                      label = h4(strong("Exam 3: First Attempt Score"),
-                                                br(),"(out of 78)"),
-                                     min = 0, max = 85, value = 0),
-                        
+                                                br(),"(out of ", exam_03_max, "points)"),
+                                     min = 0, max = exam_03_max, value = 0),
+                        checkboxInput("exam_3_first_attempt",
+                                      label = h5(strong("Check here if you did not take a first attempt")),
+                                      FALSE),
                  ),
                  column(width = 4,
                         
                         # numeric: input second attempt Exam 3 score
                         numericInput("exam_3_score_second",
                                      label = h4(strong("Exam 3: Second Attempt Score"),
-                                                br(),"(out of 78)"),
-                                     min = 0, max = 85, value = 0),
+                                                br(),"(out of ", exam_03_max, "points)"),
+                                     min = 0, max = exam_03_max, value = 0),
                         checkboxInput("exam_3_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
@@ -218,8 +226,8 @@ shinyUI(fluidPage(
                         # numeric: input third attempt Exam 3 score
                         numericInput("exam_3_score_third",
                                      label = h4(strong("Exam 3: Third Attempt Score"),
-                                                br(),"(out of 78)"),
-                                     min = 0, max = 85, value = 0),
+                                                br(),"(out of ", exam_03_max, "points)"),
+                                     min = 0, max = exam_03_max, value = 0),
                         checkboxInput("exam_3_third_attempt",
                                       label = h5(strong("Check here if you did not take a third attempt")),
                                       FALSE),
@@ -227,15 +235,15 @@ shinyUI(fluidPage(
                
                # Optional Final section
                hr(),
-               h3("Cumulative Final"),
+               # h3("Cumulative Final"),
                fluidRow(
                  column(width = 4,
                         
                         # numeric: input first Cumulative Final Exam percent
                         numericInput("final_exam_percent_first",
                                      label = h4(strong("Cumulative Final: Estimated First Attempt Percentage"),
-                                                br(),"(out of 100%)"),
-                                     min = 0, max = 110, value = 0),
+                                                br(),"(out of ", cumulative_final_max, "%)"),
+                                     min = 0, max = cumulative_final_max, value = 0),
                         checkboxInput("final_exam_taking",
                                       label = h5(strong("Check here if you will not take the Cumulative Final")),
                                       FALSE),
@@ -245,8 +253,8 @@ shinyUI(fluidPage(
                         # numeric: input Optional Final Exam score
                         numericInput("final_exam_percent_second",
                                      label = h4(strong("Cumulative Final: Estimated Second Attempt Percentage"),
-                                                br(),"(out of 100%)"),
-                                     min = 0, max = 110, value = 0),
+                                                br(),"(out of ", cumulative_final_max, "%)"),
+                                     min = 0, max = cumulative_final_max, value = 0),
                         checkboxInput("final_exam_second_attempt",
                                       label = h5(strong("Check here if you will not take a second attempt")),
                                       FALSE),
