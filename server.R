@@ -9,60 +9,265 @@ shinyServer(function(input, output){
     
     input$action_total
     
-    #### Exams ####
+    ###### 1. Exams ######
     
-    # get Exam 1 Score
-    values$exam_1_score = isolate({
-      min(input$exam_1_score, 115)
+    ####### 1a. Exam 1 #######
+    
+    # get Exam 1 attempts
+    values$exam_1_percent_first = isolate({
+      if (input$exam_1_first_attempt == FALSE){
+        min(input$exam_1_score_first,exam_01_max) / exam_01_max
+      } else { 0 }
+    })
+    values$exam_1_percent_second = isolate({
+      if (input$exam_1_second_attempt == FALSE){
+        min(input$exam_1_score_second,exam_01_max) / exam_01_max
+      } else { NA }
+    })
+    values$exam_1_percent_third = isolate({
+      if (input$exam_1_third_attempt == FALSE) {
+        min(input$exam_1_score_third,exam_01_max) / exam_01_max
+      } else { NA }
+    })
+    values$exam_1_average = isolate({
+      mean(c(values$exam_1_percent_first, 
+             values$exam_1_percent_second,
+             values$exam_1_percent_third),
+           na.rm = TRUE)
     })
     
-    # get Exam 2 Score
-    values$exam_2_score = isolate({
-      min(input$exam_2_score, 115)
+    # report out what the Exam 1 average is
+    output$exam_1_average = renderText(paste0(round(values$exam_1_average*100,1), "%"))
+    
+    # get Exam 1 S/U number
+    values$exam_1_attempt = isolate({
+      if (input$exam_1_score_first >= exam_01_satisfactory) {
+        1
+      } else if (input$exam_1_score_second >= exam_01_satisfactory) {
+        2
+      } else {
+        0
+      }
     })
     
-    # get Exam 3 Score
-    values$exam_3_score = isolate({
-      min(input$exam_3_score, 115)
+    # figure out if they earned over 65 on any attempt
+    values$exam_1_over65 = isolate({
+      if (values$exam_1_percent_first >= 65 | 
+          (input$exam_1_second_attempt == TRUE & values$exam_1_percent_second >= 65) | 
+          (input$exam_1_third_attempt == TRUE & values$exam_1_percent_second >= 65)){
+        1
+      } else {
+        0
+      }
     })
     
-    # get Optional Final Score
-    values$sim_final_score = isolate({
-      min(input$final_exam_score, 115)
+    ####### 1b. Exam 2 #######
+    
+    # get Exam 2 attempts
+    values$exam_2_percent_first = isolate({
+      if (input$exam_2_first_attempt == FALSE){
+        min(input$exam_2_score_first,exam_02_max) / exam_02_max
+      } else { 0 }
     })
+    values$exam_2_percent_second = isolate({
+      if (input$exam_2_second_attempt == FALSE){
+        min(input$exam_2_score_second,exam_02_max) / exam_02_max
+      } else { NA }
+    })
+    values$exam_2_percent_third = isolate({
+      if (input$exam_2_third_attempt == FALSE) {
+        min(input$exam_2_score_third,exam_02_max) / exam_02_max
+      } else { NA }
+    })
+    values$exam_2_average = isolate({
+      mean(c(values$exam_2_percent_first, 
+             values$exam_2_percent_second,
+             values$exam_2_percent_third),
+           na.rm = TRUE)
+    })
+    
+    # report out what the Exam 2 average is
+    output$exam_2_average = renderText(paste0(round(values$exam_2_average*100,1), "%"))
+    
+    # get Exam 2 S/U number
+    values$exam_2_attempt = isolate({
+      if (input$exam_2_score_first >= exam_02_satisfactory) {
+        1
+      } else if (input$exam_2_score_second >= exam_02_satisfactory) {
+        2
+      } else {
+        0
+      }
+    })
+    
+    # figure out if they earned over 65 on any attempt
+    values$exam_2_over65 = isolate({
+      if (values$exam_2_percent_first >= 65 | 
+          (input$exam_2_second_attempt == TRUE & values$exam_2_percent_second >= 65) | 
+          (input$exam_2_third_attempt == TRUE & values$exam_2_percent_second >= 65)){
+        1
+      } else {
+        0
+      }
+    })
+    
+    ####### 1c. Exam 3 #######
+    
+    # get Exam 3 attempts
+    values$exam_3_percent_first = isolate({
+      if (input$exam_3_first_attempt == FALSE){
+        min(input$exam_3_score_first,exam_03_max) / exam_03_max
+      } else { 0 }
+    })
+    values$exam_3_percent_second = isolate({
+      if (input$exam_3_second_attempt == FALSE){
+        min(input$exam_3_score_second,exam_03_max) / exam_03_max
+      } else { NA }
+    })
+    values$exam_3_percent_third = isolate({
+      if (input$exam_3_third_attempt == FALSE) {
+        min(input$exam_3_score_third,exam_03_max) / exam_03_max
+      } else { NA }
+    })
+    values$exam_3_average = isolate({
+      mean(c(values$exam_3_percent_first, 
+             values$exam_3_percent_second,
+             values$exam_3_percent_third),
+           na.rm = TRUE)
+    })
+    
+    # report out what the Exam 3 average is
+    output$exam_3_average = renderText(paste0(round(values$exam_3_average*100,1), "%"))
+    
+    # get Exam 3 S/U number
+    values$exam_3_attempt = isolate({
+      if (input$exam_3_score_first >= exam_03_satisfactory) {
+        1
+      } else if (input$exam_3_score_second >= exam_03_satisfactory) {
+        2
+      } else {
+        0
+      }
+    })
+    
+    # figure out if they earned over 65 on any attempt
+    values$exam_3_over65 = isolate({
+      if (values$exam_3_percent_first >= 65 | 
+          (input$exam_3_second_attempt == TRUE & values$exam_3_percent_second >= 65) | 
+          (input$exam_3_third_attempt == TRUE & values$exam_3_percent_second >= 65)){
+        1
+      } else {
+        0
+      }
+    })
+    
+    ####### 1d. Cumulative Final #######
+    
+    # get Cumulative Final attempts
+    values$sim_final_percent_first = isolate({
+      if (input$final_exam_taking == FALSE) {
+        min(input$final_exam_percent_first,cumulative_final_max) / cumulative_final_max
+      } else { 0 }
+    })
+    values$sim_final_percent_second = isolate({
+      if (input$final_exam_second_attempt == FALSE) {
+        min(input$final_exam_percent_second,cumulative_final_max) / cumulative_final_max
+      } else { NA }
+    })
+    values$sim_final_average = isolate({
+      mean(c(values$sim_final_percent_first, 
+             values$sim_final_percent_second),
+           na.rm = TRUE)
+    })
+    
+    # report out what the Cumulative Final average is
+    output$sim_final_average = renderText(paste0(round(values$sim_final_average*100,1), "%"))
+    
+    # get Cumulative Final S/U number
+    values$cumulative_final_attempt = isolate({
+      if (length(input$sim_final_percent_first) > 1) {
+        if (input$sim_final_percent_first >= cumulative_final_satisfactory) {
+          1
+        } else if (input$sim_final_percent_second >= cumulative_final_satisfactory) {
+          2
+        } else {
+          0
+        }
+      } else {
+        0
+      }
+    })
+    
+    # figure out if they earned over 65 on any attempt
+    values$cumulative_final_over65 = isolate({
+      if ((input$final_exam_taking == TRUE & values$sim_final_percent_first >= 65) | 
+          (input$final_exam_second_attempt == TRUE & values$sim_final_percent_second >= 65)) {
+        1
+      } else {
+        0
+      }
+    })
+    
+    ####### 1e. Averages #######
     
     # take only the top 3 exam scores
     values$exam_scores = isolate({
-      sum(sort(c(values$exam_1_score,
-                 values$exam_2_score,
-                 values$exam_3_score,
-                 values$sim_final_score))[2:4])
+      round(mean(sort(c(values$exam_1_average,
+                        values$exam_2_average,
+                        values$exam_3_average,
+                        values$sim_final_average)[2:4]),
+                 na.rm = TRUE), 
+            0)
     })
     
-    #### Quizzes ####
+    # report out what the average of 3 best is
+    output$simulated_exam_average = renderText({ paste0( values$exam_scores ) })
     
-    # get the total quiz points earned
-    values$quiz_total = isolate({
-      sum(c((input$quiz_warm_up * 15),
-            input$quiz_syllabus,
-            (input$quiz_post_exam1 * 15),
-            (input$quiz_post_exam2 * 15)))
+    ####### 1e. Overall performance #######
+    
+    # figure out satisfactory first vs. second 
+    values$exams_satisfactory_first = isolate({
+      (values$exam_1_attempt==1)*1 + (values$exam_2_attempt==1)*1 + 
+        (values$exam_3_attempt==1)*1 + (values$cumulative_final_attempt==1)*1
     })
     
-    # figure out which to drop
-    values$quiz_drop = isolate({
-      min((input$quiz_warm_up * 15), 
-          input$quiz_syllabus, 
-          (input$quiz_post_exam1 * 15), 
-          (input$quiz_post_exam2 * 15))
+    # figure out satisfactory first vs. second 
+    values$exams_satisfactory_first = isolate({
+      (values$exam_1_attempt==1)*1 + (values$exam_2_attempt==1)*1 + 
+        (values$exam_3_attempt==1)*1 + (values$cumulative_final_attempt==1)*1
+    })
+    values$exams_satisfactory_second = isolate({
+      (values$exam_1_attempt==2)*1 + (values$exam_2_attempt==2)*1 + 
+        (values$exam_3_attempt==2)*1 + (values$cumulative_final_attempt==2)*1
     })
     
-    # drop lowest
-    values$quiz_score = isolate({
-      ((values$quiz_total - values$quiz_drop) / 45) * 10
+    # report out the total Satisfactories on first and second attempts
+    output$exams_satisfactory_first = renderText({ paste0(values$exams_satisfactory_first) })
+    output$exams_satisfactory_second = renderText({paste0(values$exams_satisfactory_second)})
+    
+    # count the number of exams over 65
+    values$final_exams_over_65 = isolate({
+      values$exam_1_over65 + values$exam_2_over65 + values$exam_3_over65 + values$cumulative_final_over65
     })
     
-    #### Lab ####
+    # figure out what the letter grade should be for the exam performance
+    values$exam_grade = isolate({
+      if ((values$final_exams_over_65 < 3) & (values$exam_scores < grade_bundles$exam_average[4])) { 
+        "F"
+      } else if (values$exams_satisfactory_first >= 3) {
+        "A"
+      } else if (values$exams_satisfactory_first >= 2 & values$exams_satisfactory_second >= 1) {
+        "B"
+      } else if ((values$exams_satisfactory_first >= 1 & values$exams_satisfactory_second >= 2) |
+                 values$exam_scores >= grade_bundles$exam_average[3]) {
+        "C"
+      } else if ((values$final_exams_over_65 >= 3) |
+                 values$exam_scores >= grade_bundles$exam_average[4]) {
+        "D"
+      } else {
+        "Error -- check exam inputs"
+      }
+    })
     
     # calculate and transform the lab score
     values$lab_score = isolate({
