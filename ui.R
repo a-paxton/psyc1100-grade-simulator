@@ -399,14 +399,25 @@ shinyUI(fluidPage(
                              label = "Active 21",
                              FALSE),
                
-               ##### 4. CTSes #####
+               ##### 6. CTSes #####
                
                hr(),
                h3("Critical Thinking & Synthesis (CTSes)"),
-               h5("Check the box for if you earned a Satisfactory for the overall CTS."),
+               h5("Check the box if you earned a Satisfactory for the overall CTS."),
                
-               # checkboxes: check each Satisfactory KC
-               uiOutput("satisfactory_cts"),
+               # checkboxes: check each Satisfactory CTS
+               checkboxInput("s_cts_01",
+                             label = "CTS 01",
+                             FALSE),
+               checkboxInput("s_cts_02",
+                             label = "CTS 02",
+                             FALSE),
+               checkboxInput("s_cts_03",
+                             label = "CTS 03",
+                             FALSE),
+               checkboxInput("s_cts_04",
+                             label = "CTS 04",
+                             FALSE),
                
                ##### 5. ELCs #####
                
