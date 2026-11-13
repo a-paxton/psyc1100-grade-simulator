@@ -53,25 +53,13 @@ shinyUI(fluidPage(
       tags$ul(
         tags$li(strong("Exams"),
                 tags$ul(
-                  tags$li("Grade Bundle: ", textOutput("exam_letter", inline = TRUE), 
-                          tags$ul(
-                            tags$li(strong("Remember: Your performance on the exam category sets the",
-                                    em("maximum"), "letter grade that you can earn in the class."), "This gradebook item
-                                    has the largest impact on your overall grade."))
-                          ),
-                  tags$li("Satisfactory exams on first attempt: ", textOutput("exams_satisfactory_first", inline = TRUE)
-                  ),
-                  tags$li("Satisfactory exams on second attempt: ", textOutput("exams_satisfactory_second", inline = TRUE)
-                  ),
-                  tags$li("Exam average (best of three exams): ", textOutput("simulated_exam_average", inline = TRUE),
+                  tags$li("Exam average: ", textOutput("simulated_exam_average", inline = TRUE),
                           tags$ul(
                             tags$li("Exam 1 average (all attempts): ", textOutput("exam_1_average", inline = TRUE)
                             ),
                             tags$li("Exam 2 average (all attempts): ", textOutput("exam_2_average", inline = TRUE)
                             ),
                             tags$li("Exam 3 average (all attempts): ", textOutput("exam_3_average", inline = TRUE)
-                            ),
-                            tags$li("Cumulative Final average (all attempts): ", textOutput("sim_final_average", inline = TRUE)
                             )
                           )
                   ),
@@ -144,17 +132,6 @@ shinyUI(fluidPage(
                         checkboxInput("exam_1_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
-                 ),
-                 column(width = 4,
-                        
-                        # numeric: input third attempt Exam 1 score
-                        numericInput("exam_1_score_third",
-                                     label = h4(strong("Third Attempt Exam 1 Score"),
-                                                br(),"(out of ", exam_01_max, "points)"),
-                                     min = 0, max = exam_01_max, value = 0),
-                        checkboxInput("exam_1_third_attempt",
-                                      label = h5(strong("Check here if you did not take a third attempt")),
-                                      FALSE),
                  )),
                
                # Exam 2 section
@@ -183,17 +160,6 @@ shinyUI(fluidPage(
                         checkboxInput("exam_2_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
-                 ),
-                 column(width = 4,
-                        
-                        # numeric: input third attempt Exam 2 score
-                        numericInput("exam_2_score_third",
-                                     label = h4(strong("Exam 2: Third Attempt Score"),
-                                                br(),"(out of ", exam_02_max, "points)"),
-                                     min = 0, max = exam_02_max, value = 0),
-                        checkboxInput("exam_2_third_attempt",
-                                      label = h5(strong("Check here if you did not take a third attempt")),
-                                      FALSE),
                  )),
                
                # Exam 3 section
@@ -220,44 +186,6 @@ shinyUI(fluidPage(
                                      min = 0, max = exam_03_max, value = 0),
                         checkboxInput("exam_3_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
-                                      FALSE),
-                 ),
-                 column(width = 4,
-                        
-                        # numeric: input third attempt Exam 3 score
-                        numericInput("exam_3_score_third",
-                                     label = h4(strong("Exam 3: Third Attempt Score"),
-                                                br(),"(out of ", exam_03_max, "points)"),
-                                     min = 0, max = exam_03_max, value = 0),
-                        checkboxInput("exam_3_third_attempt",
-                                      label = h5(strong("Check here if you did not take a third attempt")),
-                                      FALSE),
-                 )),
-               
-               # Optional Final section
-               hr(),
-               # h3("Cumulative Final"),
-               fluidRow(
-                 column(width = 4,
-                        
-                        # numeric: input first Cumulative Final Exam percent
-                        numericInput("final_exam_percent_first",
-                                     label = h4(strong("Cumulative Final: Estimated First Attempt Percentage"),
-                                                br(),"(out of ", cumulative_final_max, "%)"),
-                                     min = 0, max = cumulative_final_max, value = 0),
-                        checkboxInput("final_exam_taking",
-                                      label = h5(strong("Check here if you will not take the Cumulative Final")),
-                                      FALSE),
-                 ),
-                 column(width = 4,
-                        
-                        # numeric: input Optional Final Exam score
-                        numericInput("final_exam_percent_second",
-                                     label = h4(strong("Cumulative Final: Estimated Second Attempt Percentage"),
-                                                br(),"(out of ", cumulative_final_max, "%)"),
-                                     min = 0, max = cumulative_final_max, value = 0),
-                        checkboxInput("final_exam_second_attempt",
-                                      label = h5(strong("Check here if you will not take a second attempt")),
                                       FALSE),
                  )),
                
