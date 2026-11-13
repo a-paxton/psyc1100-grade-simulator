@@ -264,69 +264,159 @@ shinyUI(fluidPage(
                
                hr(),
                h3("Active Learning (Actives)"),
-               h5("Check the box if you earned a Satisfactory for each KC and each L&R."),
-               h5("Remember: To earn Satisfactory on an Active, you must earn a Satisfactory on both the KC and L&R with that number."),
+               h5("For each Active, include the points that you earned (out of 16)."),
+               h5("If you do not have a score for one in your Gradebook on HuskyCT, it means you have a 0 for it."),
                
-               checkboxInput("s_active_02",
-                             label = "Active 02",
-                             FALSE),
-               checkboxInput("s_active_03",
-                             label = "Active 03",
-                             FALSE),
-               checkboxInput("s_active_04",
-                             label = "Active 04",
-                             FALSE),
-               checkboxInput("s_active_05",
-                             label = "Active 05",
-                             FALSE),
-               checkboxInput("s_active_06",
-                             label = "Active 06",
-                             FALSE),
-               checkboxInput("s_active_07",
-                             label = "Active 07",
-                             FALSE),
-               checkboxInput("s_active_08",
-                             label = "Active 08",
-                             FALSE),
-               checkboxInput("s_active_09",
-                             label = "Active 09",
-                             FALSE),
-               checkboxInput("s_active_10",
-                             label = "Active 10",
-                             FALSE),
-               checkboxInput("s_active_11",
-                             label = "Active 11",
-                             FALSE),
-               checkboxInput("s_active_12",
-                             label = "Active 12",
-                             FALSE),
-               checkboxInput("s_active_13",
-                             label = "Active 13",
-                             FALSE),
-               checkboxInput("s_active_14",
-                             label = "Active 14",
-                             FALSE),
-               checkboxInput("s_active_15",
-                             label = "Active 15",
-                             FALSE),
-               checkboxInput("s_active_16",
-                             label = "Active 16",
-                             FALSE),
-               checkboxInput("s_active_17",
-                             label = "Active 17",
-                             FALSE),
-               checkboxInput("s_active_18",
-                             label = "Active 18",
-                             FALSE),
-               checkboxInput("s_active_19",
-                             label = "Active 19",
-                             FALSE),
-               checkboxInput("s_active_20",
-                             label = "Active 20",
-                             FALSE),
-               checkboxInput("s_active_21",
-                             label = "Active 21",
-                             FALSE),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_01",
+                                     label = h4(strong("Active 01")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_02",
+                                     label = h4(strong("Active 02")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_03",
+                                     label = h4(strong("Active 03")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_04",
+                                     label = h4(strong("Active 04")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_05",
+                                     label = h4(strong("Active 05")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_06",
+                                     label = h4(strong("Active 06")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_07",
+                                     label = h4(strong("Active 07")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_08",
+                                     label = h4(strong("Active 08")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_09",
+                                     label = h4(strong("Active 09")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_10",
+                                     label = h4(strong("Active 10")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_11",
+                                     label = h4(strong("Active 11")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_12",
+                                     label = h4(strong("Active 12")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_13",
+                                     label = h4(strong("Active 13")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_14",
+                                     label = h4(strong("Active 14")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_15",
+                                     label = h4(strong("Active 15")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_16",
+                                     label = h4(strong("Active 16")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_17",
+                                     label = h4(strong("Active 17")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_18",
+                                     label = h4(strong("Active 18")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_19",
+                                     label = h4(strong("Active 19")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_20",
+                                     label = h4(strong("Active 20")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_21",
+                                     label = h4(strong("Active 21")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_22",
+                                     label = h4(strong("Active 22")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_active_23",
+                                     label = h4(strong("Active 23")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_makeup_active_01",
+                                     label = h4(strong("Make-Up or Retake Active 01")),
+                                     min = 0, max = 16, value = 0)
+                 )),
+               fluidRow(
+                 column(width = 4,
+                        numericInput("s_makeup_active_02",
+                                     label = h4(strong("Make-Up or Retake Active 02")),
+                                     min = 0, max = 16, value = 0)
+                 )),
                
                ##### 6. CTSes #####
                
