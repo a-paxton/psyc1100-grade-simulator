@@ -131,52 +131,39 @@ shinyServer(function(input, output){
     
     ###### 3. Actives ######
     
-    # tally satisfactory actives
-    values$satisfactory_actives = isolate({
-      sum(c(input$s_active_02,
-            input$s_active_03,
-            input$s_active_04,
-            input$s_active_05,
-            input$s_active_06,
-            input$s_active_07,
-            input$s_active_08,
-            input$s_active_09,
-            input$s_active_10,
-            input$s_active_11,
-            input$s_active_12,
-            input$s_active_13,
-            input$s_active_14,
-            input$s_active_15,
-            input$s_active_16,
-            input$s_active_17,
-            input$s_active_18,
-            input$s_active_19,
-            input$s_active_20,
-            input$s_active_21),
-          na.rm=TRUE
-      )
-    })
-    
-    # figure out what the letter grade should be for that value
-    values$active_grade = isolate({
-      grade_bundles$letter_grade[which(values$satisfactory_actives >= grade_bundles$active_satisfactory)[1]]
+    # average Active scores
+    values$average_actives = isolate({
+      round(mean(sort(c(input$s_active_01,
+                        input$s_active_02,
+                        input$s_active_03,
+                        input$s_active_04,
+                        input$s_active_05,
+                        input$s_active_06,
+                        input$s_active_07,
+                        input$s_active_08,
+                        input$s_active_09,
+                        input$s_active_10,
+                        input$s_active_11,
+                        input$s_active_12,
+                        input$s_active_13,
+                        input$s_active_14,
+                        input$s_active_15,
+                        input$s_active_16,
+                        input$s_active_17,
+                        input$s_active_18,
+                        input$s_active_19,
+                        input$s_active_20,
+                        input$s_active_21,
+                        input$s_active_22,
+                        input$s_active_23,
+                        input$s_makeup_active_01,
+                        input$s_makeup_active_02)[5:25]),
+                 na.rm=TRUE
+      ), 2)
     })
     
     # report out to the student
-    output$total_actives = renderText({ paste0( values$satisfactory_actives ) })
-    output$active_letter = renderText({ paste0( values$active_grade ) })
-    
-    ###### 4. CTSes ######
-    
-    # extract how many CTSes they earned
-    values$cts_satisfactory = isolate({
-      sum(c(input$s_cts_01,
-            input$s_cts_02,
-            input$s_cts_03,
-            input$s_cts_04),
-          na.rm=TRUE
-      )
-    })
+    output$average_actives = renderText({ paste0( (values$average_actives)/16, "%" ) })
     
     # figure out what the letter grade should be for that value
     values$cts_grade = isolate({
