@@ -7,7 +7,7 @@ shinyUI(fluidPage(
   theme = shinytheme("cerulean"),
   
   # create title
-  titlePanel("PSYC 1100 Grade Simulator (Fall 2023)"),
+  titlePanel("PSYC 1100 Grade Simulator (Fall 2026)"),
   
   ##### 1. Instructions #####
   
