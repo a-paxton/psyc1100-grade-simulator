@@ -550,21 +550,23 @@ shinyUI(fluidPage(
                ##### 7. ELCs #####
                
                hr(),
-               h3("ELCs"),
+               h3("RCs"),
                
                fluidRow(
-                 column(3,
-                        # numeric: input total participant pool ELCs
-                        numericInput("elc_participant_pool_credits",
-                                     label = h5("Total credits earned from Participant Pool"),
-                                     min = 0, value = 0)
+                 column(4,
+                        # numeric: input total participant pool credits
+                        numericInputIcon("rc_participant_pool_credits",
+                                     label = h5("Total credits from Participant Pool"),
+                                     min = 0, value = 0, max = 30,
+                                     icon = list(NULL, icon("hashtag")))
                  ),
-                 column(3,
+                 column(4,
                         
                         # numeric: input total alternate assignment
-                        numericInput("elc_alt_assignment_credits",
-                                     label = h5("Total credits earned from Alternate Assignments"),
-                                     min = 0, value = 0, max = 30),
+                        numericInputIcon("rc_alt_assignment_credits",
+                                         label = h5("Total credits from Alternate Assignments"),
+                                         min = 0, value = 0, max = 30,
+                                         icon = list(NULL, icon("hashtag")))
                  )
                ),   
                
