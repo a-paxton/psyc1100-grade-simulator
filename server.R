@@ -94,17 +94,16 @@ shinyServer(function(input, output){
     
     ####### 1e. Averages #######
     
-    # get full average of all scores
+    # get full average of all exam attempts
     values$exam_scores = isolate({
       round(mean(c(values$exam_1_average,
                    values$exam_2_average,
                    values$exam_3_average),
-                 na.rm = TRUE), 
-            0)
+                 na.rm = TRUE))
     })
     
-    # report out what the average of 3 best is
-    output$simulated_exam_average = renderText({ paste0( values$exam_scores ) })
+    # report out what the average is
+    output$simulated_exam_average = renderText({ paste0( values$exam_scores , "%") })
     
     ###### 2. Preps ######
     
