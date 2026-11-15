@@ -107,40 +107,37 @@ shinyServer(function(input, output){
     
     ###### 2. Preps ######
     
-    values$satisfactory_preps = isolate({
-      sum(c(input$s_prep_01,
-            input$s_prep_02,
-            input$s_prep_03,
-            input$s_prep_04,
-            input$s_prep_05,
-            input$s_prep_06,
-            input$s_prep_07,
-            input$s_prep_08,
-            input$s_prep_09,
-            input$s_prep_10,
-            input$s_prep_11,
-            input$s_prep_12,
-            input$s_prep_13,
-            input$s_prep_14,
-            input$s_prep_15,
-            input$s_prep_16,
-            input$s_prep_17,
-            input$s_prep_18,
-            input$s_prep_19,
-            input$s_prep_20,
-            input$s_prep_21),
-          na.rm=TRUE
-      )
-    })
-    
-    # figure out what the letter grade should be for that value
-    values$prep_grade = isolate({
-      grade_bundles$letter_grade[which(values$satisfactory_preps >= grade_bundles$prep_satisfactory)[1]]
+    values$average_preps = isolate({
+      round(mean(sort(c(input$s_prep_01,
+                        input$s_prep_02,
+                        input$s_prep_03,
+                        input$s_prep_04,
+                        input$s_prep_05,
+                        input$s_prep_06,
+                        input$s_prep_07,
+                        input$s_prep_08,
+                        input$s_prep_09,
+                        input$s_prep_10,
+                        input$s_prep_11,
+                        input$s_prep_12,
+                        input$s_prep_13,
+                        input$s_prep_14,
+                        input$s_prep_15,
+                        input$s_prep_16,
+                        input$s_prep_17,
+                        input$s_prep_18,
+                        input$s_prep_19,
+                        input$s_prep_20,
+                        input$s_prep_21,
+                        input$s_prep_22,
+                        input$s_prep_23),
+                      decreasing = TRUE)[1:top_n_preps],
+                 na.rm=TRUE
+      ), 2)
     })
     
     # report out to the student
-    output$total_preps = renderText({ paste0( values$satisfactory_preps ) })
-    output$prep_letter = renderText({ paste0( values$prep_grade ) })
+    output$average_preps = renderText({ paste0( (values$average_preps), "%" ) })
     
     ###### 3. Actives ######
     
