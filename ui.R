@@ -576,9 +576,11 @@ shinyUI(fluidPage(
                h3("Lab"),
                
                # numeric: input lab percentage
-               numericInput("lab_score",
-                            label = h5("Total percentage in lab (out of 100)"),
-                            min = 0, max = 110, value = 0),
+               fluidRow(
+                 column(3,
+                        numericInputIcon("lab_score",
+                                         label = h5("Total percentage in lab (out of 100)"),
+                                         min = 0, max = 100, value = 0, icon = list(NULL, icon("percent"))))),
                br(),    
       )
     )
