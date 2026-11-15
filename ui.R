@@ -341,98 +341,211 @@ shinyUI(fluidPage(
                                          min = 0, max = 100, value = 0, 
                                          icon = list(NULL, icon("percent")))
                  )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_14",
-                                     label = h4(strong("Active 14")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_15",
-                                     label = h4(strong("Active 15")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_16",
-                                     label = h4(strong("Active 16")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_17",
-                                     label = h4(strong("Active 17")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_18",
-                                     label = h4(strong("Active 18")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_19",
-                                     label = h4(strong("Active 19")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_20",
-                                     label = h4(strong("Active 20")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_21",
-                                     label = h4(strong("Active 21")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_22",
-                                     label = h4(strong("Active 22")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_active_23",
-                                     label = h4(strong("Active 23")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_makeup_active_01",
-                                     label = h4(strong("Make-Up or Retake Active 01")),
-                                     min = 0, max = 16, value = 0)
-                 )),
-               fluidRow(
-                 column(width = 4,
-                        numericInput("s_makeup_active_02",
-                                     label = h4(strong("Make-Up or Retake Active 02")),
-                                     min = 0, max = 16, value = 0)
-                 )),
                
-               ##### 6. CTSes #####
+               ##### 5. Actives #####
                
                hr(),
-               h3("Critical Thinking & Synthesis (CTSes)"),
-               h5("Check the box if you earned a Satisfactory for the overall CTS."),
+               h2("Active Learning (Actives)"),
+               h5("For each Active, include the points that you earned (out of 16)."),
+               h5("If you do not have a score for one in your Gradebook on HuskyCT, it means you have a 0 for it."),
                
-               # checkboxes: check each Satisfactory CTS
-               checkboxInput("s_cts_01",
-                             label = "CTS 01",
-                             FALSE),
-               checkboxInput("s_cts_02",
-                             label = "CTS 02",
-                             FALSE),
-               checkboxInput("s_cts_03",
-                             label = "CTS 03",
-                             FALSE),
-               checkboxInput("s_cts_04",
-                             label = "CTS 04",
-                             FALSE),
+               h4("Actives from Module 01"),
+               
+               # Week 01
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_01",
+                                         label = h5(strong("Active 01")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_02",
+                                         label = h5(strong("Active 02")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 02
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_03",
+                                         label = h5(strong("Active 03")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_04",
+                                         label = h5(strong("Active 04")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16"))))
+               ),
+               
+               # Week 03
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_05",
+                                         label = h5(strong("Active 05")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_06",
+                                         label = h5(strong("Active 06")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 04
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_07",
+                                         label = h5(strong("Active 07")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               h4("Actives from Module 02"),
+               
+               # Week 05
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_08",
+                                         label = h5(strong("Active 08")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_09",
+                                         label = h5(strong("Active 09")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 06
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_10",
+                                         label = h5(strong("Active 10")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_11",
+                                         label = h5(strong("Active 11")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 07
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_12",
+                                         label = h5(strong("Active 12")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_13",
+                                         label = h5(strong("Active 13")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 08
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_14",
+                                         label = h5(strong("Active 14")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               h4("Actives from Module 03"),
+               
+               # Week 09
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_15",
+                                         label = h5(strong("Active 15")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_16",
+                                         label = h5(strong("Active 16")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 10
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_17",
+                                         label = h5(strong("Active 17")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_18",
+                                         label = h5(strong("Active 18")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 11
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_19",
+                                         label = h5(strong("Active 19")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_20",
+                                         label = h5(strong("Active 20")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               # Week 12
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_21",
+                                         label = h5(strong("Active 21")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               h4("Actives from Module 04"),
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_active_22",
+                                         label = h5(strong("Active 22")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_active_23",
+                                         label = h5(strong("Active 23")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
+               
+               h4("Make-Up or Retake Actives"),
+               fluidRow(
+                 column(width = 4,
+                        numericInputIcon("s_makeup_active_01",
+                                         label = h5(strong("Make-Up or Retake Active 01")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 ),
+                 column(width = 4,
+                        numericInputIcon("s_makeup_active_02",
+                                         label = h5(strong("Make-Up or Retake Active 02")),
+                                         min = 0, max = 16, value = 0,
+                                         icon = list(NULL, c("out of 16")))
+                 )),
                
                ##### 7. ELCs #####
                
