@@ -199,8 +199,25 @@ shinyServer(function(input, output){
     })
     
     # report out to the student
-    output$lab_letter = renderText({ paste0( values$lab_grade ) })
-    output$lab_score = renderText({ paste0( values$lab_score ) })
+    output$lab_score = renderText({ paste0( values$lab_score, "%" ) })
     
+    ###### 6. Overall simulated grade ######  
+    
+    # output simulated weighted average
+    values$simulated_weighted_average = round((values$exam_scores*exam_weight + 
+                                           values$average_actives*active_weight + 
+                                           values$average_preps*prep_weight + 
+                                           values$rcs + 
+                                           values$lab_score*lab_weight ),2)
+    output$simulated_weighted_average = renderText({ paste0( values$simulated_weighted_average , 
+                                                             "%") })
+    
+    # output simulated letter
+    values$simulated_letter = grade_table %>% ungroup() %>%
+      dplyr::filter(percent_cutoff <= values$simulated_weighted_average) %>%
+      dplyr::arrange(desc(percent_cutoff)) %>%
+      slice(1) %>%
+      .$letter_grade
+    output$simulated_letter = renderText({ paste0( values$simulated_letter ) })
   })
 })
