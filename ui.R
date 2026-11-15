@@ -164,158 +164,182 @@ shinyUI(fluidPage(
                ##### 4. Preps #####
                
                hr(),
-               h3("Preparations for Class Meeting (Preps)"),
-               h5("Check the box if you earned a Satisfactory for the item."),
-               
-               # checkboxes: check each Satisfactory Prep
-               checkboxInput("s_prep_01",
-                             label = "Prep 01",
-                             FALSE),
-               checkboxInput("s_prep_02",
-                             label = "Prep 02",
-                             FALSE),
-               checkboxInput("s_prep_03",
-                             label = "Prep 03",
-                             FALSE),
-               checkboxInput("s_prep_04",
-                             label = "Prep 04",
-                             FALSE),
-               checkboxInput("s_prep_05",
-                             label = "Prep 05",
-                             FALSE),
-               checkboxInput("s_prep_06",
-                             label = "Prep 06",
-                             FALSE),
-               checkboxInput("s_prep_07",
-                             label = "Prep 07",
-                             FALSE),
-               checkboxInput("s_prep_08",
-                             label = "Prep 08",
-                             FALSE),
-               checkboxInput("s_prep_09",
-                             label = "Prep 09",
-                             FALSE),
-               checkboxInput("s_prep_10",
-                             label = "Prep 10",
-                             FALSE),
-               checkboxInput("s_prep_11",
-                             label = "Prep 11",
-                             FALSE),
-               checkboxInput("s_prep_12",
-                             label = "Prep 12",
-                             FALSE),
-               checkboxInput("s_prep_13",
-                             label = "Prep 13",
-                             FALSE),
-               checkboxInput("s_prep_14",
-                             label = "Prep 14",
-                             FALSE),
-               checkboxInput("s_prep_15",
-                             label = "Prep 15",
-                             FALSE),
-               checkboxInput("s_prep_16",
-                             label = "Prep 16",
-                             FALSE),
-               checkboxInput("s_prep_17",
-                             label = "Prep 17",
-                             FALSE),
-               checkboxInput("s_prep_18",
-                             label = "Prep 18",
-                             FALSE),
-               checkboxInput("s_prep_19",
-                             label = "Prep 19",
-                             FALSE),
-               checkboxInput("s_prep_20",
-                             label = "Prep 20",
-                             FALSE),
-               checkboxInput("s_prep_21",
-                             label = "Prep 21",
-                             FALSE),
-               
-               ##### 5. Actives #####
-               
-               hr(),
-               h3("Active Learning (Actives)"),
-               h5("For each Active, include the points that you earned (out of 16)."),
+               h2("Preparations for Class Meeting (Preps)"),
+               h5("For each Prep, include the percentage that you earned."),
                h5("If you do not have a score for one in your Gradebook on HuskyCT, it means you have a 0 for it."),
                
+               h4("Preps from Module 01"),
+               
+               # Week 01
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_01",
-                                     label = h4(strong("Active 01")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_01",
+                                         label = h5(strong("Prep 01")),
+                                         min = 0, max = 100, value = 0,
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_02",
+                                         label = h5(strong("Prep 02")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 02
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_02",
-                                     label = h4(strong("Active 02")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_03",
+                                         label = h5(strong("Prep 03")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_04",
+                                         label = h5(strong("Prep 04")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 03
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_03",
-                                     label = h4(strong("Active 03")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_05",
+                                         label = h5(strong("Prep 05")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_06",
+                                         label = h5(strong("Prep 06")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 04
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_04",
-                                     label = h4(strong("Active 04")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_07",
+                                         label = h5(strong("Prep 07")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               h4("Preps from Module 02"),
+               
+               # Week 05
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_05",
-                                     label = h4(strong("Active 05")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_08",
+                                         label = h5(strong("Prep 08")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_09",
+                                         label = h5(strong("Prep 09")),
+                                         min = 0, max = 100, value = 0, icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 06
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_06",
-                                     label = h4(strong("Active 06")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_10",
+                                         label = h5(strong("Prep 10")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_11",
+                                         label = h5(strong("Prep 11")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 07
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_07",
-                                     label = h4(strong("Active 07")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_12",
+                                         label = h5(strong("Prep 12")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_13",
+                                         label = h5(strong("Prep 13")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 08
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_08",
-                                     label = h4(strong("Active 08")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_14",
+                                         label = h5(strong("Prep 14")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               h4("Preps from Module 03"),
+               
+               # Week 09
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_09",
-                                     label = h4(strong("Active 09")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_15",
+                                         label = h5(strong("Prep 15")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_16",
+                                         label = h5(strong("Prep 16")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 10
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_10",
-                                     label = h4(strong("Active 10")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_17",
+                                         label = h5(strong("Prep 17")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_18",
+                                         label = h5(strong("Prep 18")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 11
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_11",
-                                     label = h4(strong("Active 11")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_19",
+                                         label = h5(strong("Prep 19")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_20",
+                                         label = h5(strong("Prep 20")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               # Week 12
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_12",
-                                     label = h4(strong("Active 12")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_21",
+                                         label = h5(strong("Prep 21")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
+               
+               h4("Preps from Module 04"),
+               
+               # Week 13
                fluidRow(
                  column(width = 4,
-                        numericInput("s_active_13",
-                                     label = h4(strong("Active 13")),
-                                     min = 0, max = 16, value = 0)
+                        numericInputIcon("s_prep_22",
+                                         label = h5(strong("Prep 22")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))),
+                 column(width = 4,
+                        numericInputIcon("s_prep_23",
+                                         label = h5(strong("Prep 23")),
+                                         min = 0, max = 100, value = 0, 
+                                         icon = list(NULL, icon("percent")))
                  )),
                fluidRow(
                  column(width = 4,
