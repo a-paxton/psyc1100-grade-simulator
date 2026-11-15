@@ -50,51 +50,23 @@ shinyUI(fluidPage(
       hr(),
       
       p(h5(strong("Simulated Results"))),
+      p(strong("Simulated course percent: ", textOutput("simulated_weighted_average", inline = TRUE))),
+      p(strong("Simulated course letter grade: ", textOutput("simulated_letter", inline = TRUE))),
       tags$ul(
-        tags$li(strong("Exams"),
+        tags$li(strong("Exams: ", textOutput("simulated_exam_average", inline = TRUE)),
                 tags$ul(
-                  tags$li("Exam average: ", textOutput("simulated_exam_average", inline = TRUE),
-                          tags$ul(
-                            tags$li("Exam 1 average (all attempts): ", textOutput("exam_1_average", inline = TRUE)
-                            ),
-                            tags$li("Exam 2 average (all attempts): ", textOutput("exam_2_average", inline = TRUE)
-                            ),
-                            tags$li("Exam 3 average (all attempts): ", textOutput("exam_3_average", inline = TRUE)
-                            )
-                          )
+                  tags$li("Exam 1 average (all attempts): ", textOutput("exam_1_average", inline = TRUE)
                   ),
+                  tags$li("Exam 2 average (all attempts): ", textOutput("exam_2_average", inline = TRUE)
+                  ),
+                  tags$li("Exam 3 average (all attempts): ", textOutput("exam_3_average", inline = TRUE)
+                  )
                 ),
         ),
-        tags$li(strong("Preps"),
-                tags$ul(
-                  tags$li("Grade Bundle:", textOutput("prep_letter", inline = TRUE)),
-                  tags$li("Total Satisfactory:", textOutput("total_preps", inline = TRUE)),
-                ),
-        ),
-        tags$li(strong("Actives"),
-                tags$ul(
-                  tags$li("Grade Bundle:", textOutput("active_letter", inline = TRUE)),
-                  tags$li("Total Satisfactory:", textOutput("total_actives", inline = TRUE)),
-                ),
-        ),
-        tags$li(strong("CTSes"),
-                tags$ul(
-                  tags$li("Grade Bundle:", textOutput("cts_letter", inline = TRUE)),
-                  tags$li("Total Satisfactory:", textOutput("total_ctses", inline = TRUE)),
-                ),
-        ),
-        tags$li(strong("ELCs"),
-                tags$ul(
-                  tags$li("Grade Bundle:", textOutput("elc_letter", inline = TRUE)),
-                  tags$li("Total Credits:", textOutput("total_elcs", inline = TRUE)),
-                ),
-        ),
-        tags$li(strong("Lab"),
-                tags$ul(
-                  tags$li("Grade Bundle:", textOutput("lab_letter", inline = TRUE)),
-                  tags$li("Lab Percentage:", textOutput("lab_score", inline = TRUE)),
-                ),
-        ),
+        tags$li(strong("Preparations Checks (Preps): ", textOutput("average_preps", inline = TRUE))),
+        tags$li(strong("Active Learnings (Actives): ", textOutput("average_actives", inline = TRUE))),
+        tags$li(strong("Research Credits (RCs): ", textOutput("total_rcs", inline = TRUE))),
+        tags$li(strong("Lab: ", textOutput("lab_score", inline = TRUE))),
       ),
       hr(),
       
