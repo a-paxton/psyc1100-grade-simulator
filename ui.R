@@ -1,5 +1,6 @@
 library(shiny)
 library(shinythemes)
+library(shinyWidgets)
 library(tidyverse)
 
 # create the user interface
