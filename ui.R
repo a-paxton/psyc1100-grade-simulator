@@ -15,31 +15,30 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       p(h5(strong("Instructions"))),
+      strong("Please read and follow all instructions carefully."),
+      p("Be sure to", strong("check, double-check, and", em("triple-check")), 
+        "the values that you entered to avoid making any mistakes when using this simulator."),
+      p("This grade simulator is provided to help you simulate what your
+                grade may be in the class. Using this improperly may result in
+                inaccurate simulations.", strong("Remember that this is provided only as
+                a guide;"), "it isn't a guarantee of what you will earn in the class."),
       tags$ul(
-        tags$li("This grade simulator is provided to help you simulate what your
-                grade may be in the class. Please note that this is provided for your
-                informational purposes only. Using this improperly may result in
-                inaccurate simulations."),
-        tags$li(strong("Please read and follow all instructions carefully.")),
-        tags$ul(
-          tags$li("For exam scores, please enter the points that you earned (not the percentage). 
-                  If there was a curve for the grade, remember to input your curved score, not the original score.
+        tags$li("Enter all exams in percentage (out of 100). If you earned extra credit
+                  and/or if there was a curve, input the percentage after those points.
                   Check the boxes for ALL attempts that you did not take."),
-          tags$li("For each Prep, Active, and CTS, check the box if you earned a Satisfactory. 
-                  (Do not check it if you earned an Unsatisfactory.)"),
-          tags$li("For ELCs, please enter the number of credits that you earned 
+        tags$li("Enter all Actives in points (out of 16)."),
+        tags$li("Enter all Preps in percentage (out of 100)."),
+        tags$li("For Research Credits, please enter the number of credits that you earned 
                     in the Participant Pool and Alternative Assignments"),
-          tags$li("For the lab grade, please enter the percentage that you earned (out of 100)."),
-          tags$li("After you have entered all grades, press 'Simulate!' to simulate your 
-                  course grade so far.")
-        ),
-        tags$li("Be sure to", strong("check, double-check, and", em("triple-check")), 
-                "the values that you entered to avoid making any mistakes when using 
-                this grade simulator."),
-        tags$li("To simulate your final course grade with the Cumulative Final Exam, simply 
-                  type in a grade (between 0-100) and hit 'Simulate!' again."),
-        tags$li("To simulate your final course grade without taking the Cumulative Final
-                  Exam, check the box below the Optional Final Exam box.")),
+        tags$li("Enter your lab grade in percentage (out of 100)."),
+        tags$li("After you have entered all grades, press 'Simulate!' to simulate your 
+                  course grade so far."),
+        tags$li("To simulate your final course grade after retaking an exam during
+                  the last week of classes, simply in a grade (between 0-100) and hit 'Simulate!' again."),
+        tags$li("To simulate your final course grade without retaking or making up
+                  exams during the last week of class, simply check the boxes
+                  for attempts.")
+      ),
       hr(),
       
       ##### 2. Simulated Results #####
