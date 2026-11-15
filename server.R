@@ -191,16 +191,11 @@ shinyServer(function(input, output){
     # report out to the student
     output$total_rcs = renderText({ paste0( values$rcs , "%") })
     
-    ###### 6. Lab ######
+    ###### 5. Lab ######
     
     # calculate lab percentage
     values$lab_score = isolate({
       min(input$lab_score, 110)
-    })
-    
-    # figure out what the letter grade should be for that value
-    values$lab_grade = isolate({
-      grade_bundles$letter_grade[which(values$lab_score >= grade_bundles$lab)[1]]
     })
     
     # report out to the student
