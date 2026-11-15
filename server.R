@@ -167,22 +167,14 @@ shinyServer(function(input, output){
                         input$s_active_22,
                         input$s_active_23,
                         input$s_makeup_active_01,
-                        input$s_makeup_active_02)[5:25]),
+                        input$s_makeup_active_02),
+                      decreasing = TRUE)[1:top_n_actives],
                  na.rm=TRUE
-      ), 2)
+      )/16*100, 2)
     })
     
     # report out to the student
-    output$average_actives = renderText({ paste0( (values$average_actives)/16, "%" ) })
-    
-    # figure out what the letter grade should be for that value
-    values$cts_grade = isolate({
-      grade_bundles$letter_grade[which(values$cts_satisfactory >= grade_bundles$cts_satisfactory)[1]]
-    })
-    
-    # report out to the student
-    output$total_ctses = renderText({ paste0( values$cts_satisfactory ) })
-    output$cts_letter = renderText({ paste0( values$cts_grade ) })
+    output$average_actives = renderText({ paste0( values$average_actives, "%" ) })
     
     ###### 5. ELCs ######
     
