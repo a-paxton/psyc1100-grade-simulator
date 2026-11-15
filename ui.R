@@ -80,16 +80,16 @@ shinyUI(fluidPage(
                
                # Exam 1 section
                hr(),
-               h3("Exams"),
+               h2("Exams"),
                
                fluidRow(
                  column(width = 4,
                         
                         # numeric: input Exam 1 score
-                        numericInput("exam_1_score_first",
-                                     label = h4(strong("Exam 1: First Attempt Score"),
-                                                br(),"(out of ", exam_01_max, "points)"),
-                                     min = 0, max = exam_01_max, value = 0),
+                        numericInputIcon("exam_1_score_first",
+                                         label = h5(strong("Exam 1: First Attempt")),
+                                         min = 0, value = 0,
+                                         icon = list(NULL, icon("percent"))),
                         checkboxInput("exam_1_first_attempt",
                                       label = h5(strong("Check here if you did not take a first attempt")),
                                       FALSE),
@@ -97,10 +97,10 @@ shinyUI(fluidPage(
                  column(width = 4,
                         
                         # numeric: input second attempt Exam 1 score
-                        numericInput("exam_1_score_second",
-                                     label = h4(strong("Exam 1: Second Attempt Score"),
-                                                br(),"(out of ", exam_01_max, "points)"),
-                                     min = 0, max = exam_01_max, value = 0),
+                        numericInputIcon("exam_1_score_second",
+                                         label = h5(strong("Exam 1: Second Attempt")),
+                                         min = 0, value = 0,
+                                         icon = list(NULL, icon("percent"))),
                         checkboxInput("exam_1_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
@@ -114,10 +114,10 @@ shinyUI(fluidPage(
                  column(width = 4,
                         
                         # numeric: input first attempt Exam 2 score
-                        numericInput("exam_2_score_first",
-                                     label = h4(strong("Exam 2: First Attempt Score"),
-                                                br(),"(out of ", exam_02_max, "points)"),
-                                     min = 0, max = exam_02_max, value = 0),
+                        numericInputIcon("exam_2_score_first",
+                                         label = h5(strong("Exam 2: First Attempt")),
+                                         min = 0, value = 0,
+                                         icon = list(NULL, icon("percent"))),
                         checkboxInput("exam_2_first_attempt",
                                       label = h5(strong("Check here if you did not take a first attempt")),
                                       FALSE),
@@ -125,10 +125,10 @@ shinyUI(fluidPage(
                  column(width = 4,
                         
                         # numeric: input second attempt Exam 2 score
-                        numericInput("exam_2_score_second",
-                                     label = h4(strong("Exam 2: Second Attempt Score"),
-                                                br(),"(out of ", exam_02_max, "points)"),
-                                     min = 0, max = exam_02_max, value = 0),
+                        numericInputIcon("exam_2_score_second",
+                                         label = h5(strong("Exam 2: Second Attempt")),
+                                         min = 0, value = 0,
+                                         icon = list(NULL, icon("percent"))),
                         checkboxInput("exam_2_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
@@ -141,10 +141,10 @@ shinyUI(fluidPage(
                  column(width = 4,
                         
                         # numeric: input first attempt Exam 3 score
-                        numericInput("exam_3_score_first",
-                                     label = h4(strong("Exam 3: First Attempt Score"),
-                                                br(),"(out of ", exam_03_max, "points)"),
-                                     min = 0, max = exam_03_max, value = 0),
+                        numericInputIcon("exam_3_score_first",
+                                         label = h5(strong("Exam 3: First Attempt")),
+                                         min = 0, value = 0,
+                                         icon = list(NULL, icon("percent"))),
                         checkboxInput("exam_3_first_attempt",
                                       label = h5(strong("Check here if you did not take a first attempt")),
                                       FALSE),
@@ -152,10 +152,10 @@ shinyUI(fluidPage(
                  column(width = 4,
                         
                         # numeric: input second attempt Exam 3 score
-                        numericInput("exam_3_score_second",
-                                     label = h4(strong("Exam 3: Second Attempt Score"),
-                                                br(),"(out of ", exam_03_max, "points)"),
-                                     min = 0, max = exam_03_max, value = 0),
+                        numericInputIcon("exam_3_score_second",
+                                         label = h5(strong("Exam 3: Second Attempt")),
+                                         min = 0, value = 0,
+                                         icon = list(NULL, icon("percent"))),
                         checkboxInput("exam_3_second_attempt",
                                       label = h5(strong("Check here if you did not take a second attempt")),
                                       FALSE),
