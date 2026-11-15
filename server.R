@@ -176,22 +176,20 @@ shinyServer(function(input, output){
     # report out to the student
     output$average_actives = renderText({ paste0( values$average_actives, "%" ) })
     
-    ###### 5. ELCs ######
+    ###### 4. RCs ######
     
-    # grab how many ELCs they earned (total)
-    values$elcs = isolate({
-      sum(c(input$elc_participant_pool_credits,
-            input$elc_alt_assignment_credits))
-    })
-    
-    # figure out what the letter grade should be for that value
-    values$elc_grade = isolate({
-      grade_bundles$letter_grade[which(values$elcs >= grade_bundles$elcs)[1]]
+    # grab how many Research Credits they earned (total)
+    values$rcs = isolate({
+      ifelse(sum(c(input$rc_participant_pool_credits,
+                   input$rc_alt_assignment_credits)) >= 5,
+             5,
+             sum(c(input$rc_participant_pool_credits,
+                   input$rc_alt_assignment_credits))
+      )
     })
     
     # report out to the student
-    output$total_elcs = renderText({ paste0( values$elcs ) })
-    output$elc_letter = renderText({ paste0( values$elc_grade ) })
+    output$total_rcs = renderText({ paste0( values$rcs , "%") })
     
     ###### 6. Lab ######
     
