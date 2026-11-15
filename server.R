@@ -16,12 +16,12 @@ shinyServer(function(input, output){
     # get Exam 1 attempts
     values$exam_1_percent_first = isolate({
       if (input$exam_1_first_attempt == FALSE){
-        min(input$exam_1_score_first,exam_01_max) / exam_01_max
-      } else { 0 }
+        input$exam_1_score_first
+      } else { NA }
     })
     values$exam_1_percent_second = isolate({
       if (input$exam_1_second_attempt == FALSE){
-        min(input$exam_1_score_second,exam_01_max) / exam_01_max
+        input$exam_1_score_second
       } else { NA }
     })
     values$exam_1_average = isolate({
@@ -31,19 +31,24 @@ shinyServer(function(input, output){
     })
     
     # report out what the Exam 1 average is
-    output$exam_1_average = renderText(paste0(round(values$exam_1_average*100,1), "%"))
+    values$exam_1_average = ifelse(is.na(values$exam_1_percent_first) & 
+                                     is.na(values$exam_1_percent_second),
+                                   0,
+                                   values$exam_1_average)
+    output$exam_1_average = renderText(paste0(values$exam_1_average,
+                                              "%"))
     
     ####### 1b. Exam 2 #######
     
     # get Exam 2 attempts
     values$exam_2_percent_first = isolate({
       if (input$exam_2_first_attempt == FALSE){
-        min(input$exam_2_score_first,exam_02_max) / exam_02_max
-      } else { 0 }
+        input$exam_2_score_first
+      } else { NA }
     })
     values$exam_2_percent_second = isolate({
       if (input$exam_2_second_attempt == FALSE){
-        min(input$exam_2_score_second,exam_02_max) / exam_02_max
+        input$exam_2_score_second
       } else { NA }
     })
     
@@ -54,19 +59,23 @@ shinyServer(function(input, output){
     })
     
     # report out what the Exam 2 average is
-    output$exam_2_average = renderText(paste0(round(values$exam_2_average*100,1), "%"))
-    
+    values$exam_2_average = ifelse(is.na(values$exam_2_percent_first) & 
+                                     is.na(values$exam_2_percent_second),
+                                   0,
+                                   values$exam_2_average)
+    output$exam_2_average = renderText(paste0(values$exam_2_average,
+                                              "%"))
     ####### 1c. Exam 3 #######
     
     # get Exam 3 attempts
     values$exam_3_percent_first = isolate({
       if (input$exam_3_first_attempt == FALSE){
-        min(input$exam_3_score_first,exam_03_max) / exam_03_max
-      } else { 0 }
+        input$exam_3_score_first
+      } else { NA }
     })
     values$exam_3_percent_second = isolate({
       if (input$exam_3_second_attempt == FALSE){
-        min(input$exam_3_score_second,exam_03_max) / exam_03_max
+        input$exam_3_score_second
       } else { NA }
     })
     values$exam_3_average = isolate({
@@ -76,7 +85,12 @@ shinyServer(function(input, output){
     })
     
     # report out what the Exam 3 average is
-    output$exam_3_average = renderText(paste0(round(values$exam_3_average*100,1), "%"))
+    values$exam_3_average = ifelse(is.na(values$exam_3_percent_first) & 
+                                     is.na(values$exam_3_percent_second),
+                                   0,
+                                   values$exam_3_average)
+    output$exam_3_average = renderText(paste0(values$exam_3_average,
+                                              "%"))
     
     ####### 1e. Averages #######
     
